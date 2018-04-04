@@ -1,0 +1,9 @@
+{
+  "HolderCertiType" : ["身份证"],
+  "HolderCertiTypeValue" : ["I"],
+  "HolderGender" : ["男", "女"],
+  "HolderGenderValue" : ["M", "F"],
+  "ApplyNum" : [1, 2, 3],
+  "forInsuredPerson": [{"value": "00","label": "本人"}, {"value": "01","label": "父母"}, {"value": "02","label": "配偶"},{"value": "03","label": "子女"}, {"value": "04","label": "祖孙"},{"value": "05","label": "监护"}, {"value": "06","label": "其他"}, {"value": "07","label": "保单服务人员"}, {"value": "08","label": "直系亲属"}],
+  "jobCategoryList": [{"value": "2022111","lifeRiskLev": "1","medicalRiskLev": "1","label": "机关公务员/企事业单位内勤"}, {"value": "3010101","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司内勤（行政/人力等办公室工作）"},{"value": "3010102","lifeRiskLev": "2","medicalRiskLev": "1","label": "公司外勤（销售/市场等联系工作）"}, {"value": "1050104","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司/企业负责人（不亲自作业）"}, {"value": "1050103","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司/企业部门经理（不亲自作业）"}, {"value": "4071506","lifeRiskLev": "1","medicalRiskLev": "1","label": "杂货商"}, {"value": "4019903","lifeRiskLev": "2","medicalRiskLev": "1","label": "个体摊贩"}, {"value": "8000001","lifeRiskLev": "2","medicalRiskLev": "1","label": "离退休人员（无兼职）"}, {"value": "4071203","lifeRiskLev": "1","medicalRiskLev": "1","label": "家庭主妇"},{"value": "2099907","lifeRiskLev": "1","medicalRiskLev": "1","label": "一般学生（非军校/武校等）"}, {"value": "2099908","lifeRiskLev": "1","medicalRiskLev": "1","label": "学龄前儿童/婴幼儿"}, {"value": "5010101","lifeRiskLev": "2","medicalRiskLev": "1","label": "农民（只种地不打工）"},{"value": "","lifeRiskLev": "","medicalRiskLev": "","label": "其他"}]
+}
