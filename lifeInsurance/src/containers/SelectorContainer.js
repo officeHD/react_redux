@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { closeSelector, changeHolderCertiType, changeContactCertiType, changeCarType, changeUsingType, changeApprovedSeats, changeApplyNum, changeInsuredRelaToHolder, changeInsurantCertiType } from '../actions'
-import Selector from '../components/Selector'
+import Selector from '../components/public/Selector'
 
 const mapStateToProps = (state) => ({
   selectorOptions: state.selectorOptions,

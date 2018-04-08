@@ -1,17 +1,17 @@
 import React from 'react'
-import TitleBarStepContainer from '../containers/TitleBarStepContainer'
+import TitleBarContainer from '../containers/TitleBarContainer'
 import InsurantContainer from '../containers/InsurantContainer'
 import HolderContainer from '../containers/HolderContainer'
 import RelationTypeContainer from '../containers/RelationTypeContainer'
 import ProductContainer from '../containers/ProductContainer'
 import LoadingContainer from '../containers/LoadingContainer'
-import Navigation from './Navigation'
-import SubTitle from './SubTitle'
+import Navigation from './public/Navigation'
+import SubTitle from './public/SubTitle'
 import style from './asset/css/index.less'
 
 const OutPut = ({step, onGoToStep}) => (
   <div>
-    <TitleBarStepContainer />
+    <TitleBarContainer />
     <Navigation step={3}/>
 
     <SubTitle title="投保产品信息" />

@@ -2,7 +2,6 @@ import React from 'react'
 import style from './asset/css/index.less'
 
 const OutPut = ({ index, card, onChangInput}) => {
-  
   return (
     <div className={style.ankang}>
       <p>

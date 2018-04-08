@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const Container = connect(
+const Step3Container = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Step3)
 
-export default Container
+export default Step3Container

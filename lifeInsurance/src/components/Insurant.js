@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import BlankLi from './BlankLi'
-import InputBox from './InputBox'
-import ClickDiv from './ClickDiv'
-import RadioSelector from './RadioSelector'
+import BlankLi from './public/BlankLi'
+import InputBox from './public/InputBox'
+import ClickDiv from './public/ClickDiv'
+import RadioSelector from './public/RadioSelector'
 import { Picker } from 'antd-mobile';
 import data from '../reducers/data.json'
 

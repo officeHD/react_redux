@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './asset/css/index.less'
+import style from '../asset/css/index.less'
 
 const RadioSelector = ({a, b, selected, onSelect}) => (
   <ul className={style.radio_selector}>

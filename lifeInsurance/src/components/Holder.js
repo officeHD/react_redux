@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import BlankLi from './BlankLi'
-import InputBox from './InputBox'
-import ClickDiv from './ClickDiv'
-import RadioSelector from './RadioSelector'
+import BlankLi from './public/BlankLi'
+import InputBox from './public/InputBox'
+import ClickDiv from './public/ClickDiv'
+import RadioSelector from './public/RadioSelector'
 import data from '../reducers/data.json'
 import { Picker } from 'antd-mobile';
  
@@ -43,8 +43,6 @@ const CustomChildren = props => (
             <InputBox val={this.props.holderCertiNo} onChangeVal={this.props.onChangeHolderNo} maxLength="18" />
           }
         </BlankLi>
-        
-        
         <BlankLi item="邮箱">
           {this.props.justRead ? this.props.holderEmail :
           <InputBox val={this.props.holderEmail} onChangeVal={this.props.onChangeHolderEmail} tip="用于接收电子保单"/>

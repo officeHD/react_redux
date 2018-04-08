@@ -3,10 +3,8 @@ import { checkInsurant } from '../actions'
 import Step2 from '../components/Step2'
 
 const mapStateToProps = (state) => {
-	 
-	return({step:state.step})
-  
-} 
+  return ({ step: state.step })
+}
 
 const mapDispatchToProps = (dispatch) => ({
   onGoToStep: () => {
@@ -14,9 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const Container = connect(
+const Step2Container = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Step2)
 
-export default Container
+export default Step2Container

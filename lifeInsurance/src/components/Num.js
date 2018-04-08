@@ -1,6 +1,6 @@
 import React from 'react'
-import BlankLi from './BlankLi'
-import ClickDiv from './ClickDiv'
+import BlankLi from './public/BlankLi'
+import ClickDiv from './public/ClickDiv'
 import data from '../reducers/data.json'
 
 const OutPut = ({ applyNum, onShowSelector}) => {

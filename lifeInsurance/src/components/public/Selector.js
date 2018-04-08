@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import style from './asset/css/index.less'
+import style from '../asset/css/index.less'
 
 export default class OutPut extends Component{
   componentWillUnmount() {

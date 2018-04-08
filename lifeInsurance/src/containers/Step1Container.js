@@ -3,10 +3,8 @@ import { checkHolder } from '../actions'
 import Step1 from '../components/Step1'
 
 const mapStateToProps = (state) => {
-	 
-	return({step:1})
-  
-} 
+  return ({ step: 1 })
+}
 
 const mapDispatchToProps = (dispatch) => ({
   onGoToStep: () => {
@@ -14,9 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const Container = connect(
+const Step1Container = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Step1)
 
-export default Container
+export default Step1Container

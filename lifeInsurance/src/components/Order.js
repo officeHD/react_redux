@@ -1,7 +1,7 @@
 import React from 'react'
-import BlankLi from './BlankLi'
-import InputBox from './InputBox'
-import ClickDiv from './ClickDiv'
+import BlankLi from './public/BlankLi'
+import InputBox from './public/InputBox'
+import ClickDiv from './public/ClickDiv'
 
 const OutPut = ({ insuredId, fee, applyNum}) => {
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './asset/css/index.less'
+import style from '../asset/css/index.less'
 
 const SubTitle = ({title}) => (
     

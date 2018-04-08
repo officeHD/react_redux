@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
 
     if (staffId) {
       dispatch(goToStep(1))
-      location.href = '#/step1'
+      location.href = '#/step2'
     } else {
       Toast.info("请登录后使用")
     }

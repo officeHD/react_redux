@@ -18,17 +18,19 @@ const mapDispatchToProps = (dispatch) => ({
   onGoToStep: () => {
     dispatch(goToStep(4))
   },
+  // 众安收银
   onGoToZACashier: () => {
     dispatch(sendData())
   },
+  //支付方式
   onChangeIsOtherWay: () => {
     dispatch(changeIsOtherWay())
   }
 })
 
-const Container = connect(
+const Step4Container = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Step4)
 
-export default Container
+export default Step4Container

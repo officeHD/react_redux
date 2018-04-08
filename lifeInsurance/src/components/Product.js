@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
-import BlankLi from './BlankLi'
-import InputBox from './InputBox'
-
-import moment from 'moment';
+import BlankLi from './public/BlankLi'
+import InputBox from './public/InputBox'
+ 
 import style from './asset/css/index.less'
 
 export default class OutPut extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <ul className="coat_ul">
         <BlankLi item="保险名称">
