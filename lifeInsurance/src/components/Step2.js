@@ -1,33 +1,60 @@
-import React from 'react'
-import TitleBarContainer from '../containers/TitleBarContainer'
-import RelationTypeContainer from '../containers/RelationTypeContainer'
-import InsurantContainer from '../containers/InsurantContainer'
-import NumContainer from '../containers/NumContainer'
-import SelectorContainer from '../containers/SelectorContainer'
-import OccupationContainer from '../containers/OccupationContainer'
+import React,{Component} from 'react'
+import TitleBarStepContainer from '../containers/TitleBarStepContainer'
 import LoadingContainer from '../containers/LoadingContainer'
-import Navigation from './public/Navigation'
-import SubTitle from './public/SubTitle'
-import InsureItemCard from './InsureItemCard'
+import OrderContainer from '../containers/OrderContainer'
+
 import { Link } from 'react-router'
 import style from './asset/css/index.less'
+import Footer from './public/Footer'
 
 
-const OutPut = ({step, onGoToStep}) => (
-  <div>
-    <TitleBarContainer />
-    <Navigation step={2}/>
-    <SubTitle title="被保人信息" />
-    <RelationTypeContainer />
-    <InsurantContainer justRead={false}/>
-    <SubTitle title="保险信息" />
-    <NumContainer />
-    <button className={style.next_btn} onClick={onGoToStep}>下一步</button>
-    <SelectorContainer />
-    <OccupationContainer />
-    <LoadingContainer />
+export default class Step2 extends Component {
 
-  </div>
-)
+  render() {
+    
+    return (
+      <div>
+        <TitleBarStepContainer />
+        <div>
+          <OrderContainer/>
+          
+          <div className={style.ordermes}>
+            <label>投保人信息</label>
+            <ul>
+                <li>姓名：{this.props.holderName} </li>             
+                <li>手机号码：{this.props.holderPhone} </li>             
+                <li>证件号：{this.props.holderCertiNo} </li>             
+                <li>证件有效期：{this.props.certiNoEffictive} </li>             
+                <li>电子邮箱：{this.props.holderEmail} </li>             
+                <li>投保地区：{this.props.holderAddress} </li>             
+                <li>详细地区：{this.props.holderLocation} </li>             
+            </ul>
+          </div>
+          <div className={style.ordermes}>
+            <label>被保人信息</label>
+            <ul>
+                <li>被保人与投保人关系：{this.props.forInsuredPerson} </li> 
+                <li>被保人职业：{this.props.jobCategory} </li>       
+            </ul>
+            {this.props.forInsuredPerson[0] === '00'?
+            null:<ul>
+                <li>姓名：{this.props.insurantName} </li>             
+                <li>手机号码：{this.props.insurantPhone} </li>             
+                <li>证件号：{this.props.insurantCertiNo} </li>             
+                         
+                     
+            </ul>
+             }
+           
+          </div>
+          <Footer/>
+        </div>
+                      
+        <button className={style.next_btn} onClick={this.props.onGoToStep}>确定</button>
+        <LoadingContainer />
 
-export default OutPut
+      </div>
+    )
+  };
+}
+ 

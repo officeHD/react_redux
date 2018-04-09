@@ -19,17 +19,15 @@ export default class Plans extends Component {
 
       return (
        <div>
-          <div className={this.state.show ? style.plan_all : style.plan_list}>
+          <div className={this.state.show ? style.plan_all : style.plan_list} >
             <span className={style.detail_title}>
               <span className={style.detail_half}> {this.props.title}</span>
-            
-               <span className={style.detail_half}> {this.props.tip}
+               <span className={style.detail_half} onClick={this.props.onClick}> {this.props.extra?this.props.extra:this.props.children}
                {this.props.more?
                <ShowController   show={this.state.show} onToggleShow={this.toggleShow} />:null
               }
             </span>
-             
-             
+
             </span> 
             <span className={style.more_info}>
               {this.props.more}

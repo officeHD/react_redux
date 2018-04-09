@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { closeLiSelector, changeProvince, changeCity, changeCounty, getCitiesDate, getCountiesDate } from '../actions'
-import LiSelector from '../components/public/LiSelector'
+import LiSelector from '../components/LiSelector'
 
 const mapStateToProps = (state) => ({
   showLiSelector: state.showLiSelector,
@@ -23,6 +23,15 @@ const mapDispatchToProps = (dispatch) => ({
       case 'county':
         dispatch(changeCounty(name, code))
         break;
+      // case 'UsingType':
+      //   dispatch(changeUsingType(index))
+      //   break;
+      // case 'ApprovedSeats':
+      //   dispatch(changeApprovedSeats(index))
+      //   break;
+      // case 'ApplyNum':
+      //   dispatch(changeApplyNum(index))
+      //   break;
       default:
         break;
     }

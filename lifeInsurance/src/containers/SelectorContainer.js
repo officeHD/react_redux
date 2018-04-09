@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { closeSelector, changeHolderCertiType, changeContactCertiType, changeCarType, changeUsingType, changeApprovedSeats, changeApplyNum, changeInsuredRelaToHolder, changeInsurantCertiType } from '../actions'
-import Selector from '../components/public/Selector'
+import Selector from '../components/Selector'
 
 const mapStateToProps = (state) => ({
   selectorOptions: state.selectorOptions,
@@ -11,8 +11,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSelect: (target, index) => {
+    
     switch(target) {
-      case 'HolderCertiType':
+      case 'holderCertiType':
         dispatch(changeHolderCertiType(index))
         break;
       case 'ContactCertiType':

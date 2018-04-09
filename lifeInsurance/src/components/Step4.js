@@ -1,11 +1,11 @@
 import React from 'react'
-import TitleBarContainer from '../containers/TitleBarContainer'
+import TitleBarStepContainer from '../containers/TitleBarStepContainer'
 import OrderContainer from '../containers/OrderContainer'
 import CardsContainer from '../containers/CardsContainer'
-import Navigation from './public/Navigation'
+import Navigation from './Navigation'
 import ZACashier from './ZACashier'
-import BlankLi from './public/BlankLi'
-import ClickDiv from './public/ClickDiv'
+import BlankLi from './BlankLi'
+import ClickDiv from './ClickDiv'
 import LoadingContainer from '../containers/LoadingContainer'
 import { Link } from 'react-router'
 import style from './asset/css/index.less'
@@ -13,7 +13,7 @@ import style from './asset/css/index.less'
 const OutPut = ({step, applyNum, insuredId, sumPremium, url, isZACashier, isOtherWay, balance, onGoToZACashier, onChangeIsOtherWay, onGoToStep}) => (
 
   <div>
-    <TitleBarContainer />
+    <TitleBarStepContainer />
     <Navigation step={4}/>
     <div className={style.total}>
       应付金额：<span>{sumPremium}</span>元({applyNum}份)

@@ -39,7 +39,7 @@ export default class OutPut extends Component{
            item.occupations.map((items,index)=>{
               if(items.code===this.props.category2_code){
                 list= items.occupations;
-                console.log(list)
+               
               }
            }) 
         }
@@ -60,7 +60,7 @@ export default class OutPut extends Component{
         }
       })
     }
-    console.log(this.props.category)
+   
     let listShows = null;
       listShows = list.map((item, index) => {
         return (<li key={index} onClick={e => this.props.onClickJob(item.category,item.cname,item.code)}>{item.cname}</li>)

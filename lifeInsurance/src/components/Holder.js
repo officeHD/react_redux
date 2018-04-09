@@ -1,28 +1,19 @@
 import React, { Component } from 'react'
-import BlankLi from './public/BlankLi'
-import InputBox from './public/InputBox'
-import ClickDiv from './public/ClickDiv'
-import RadioSelector from './public/RadioSelector'
+import BlankLi from './BlankLi'
+import InputBox from './InputBox'
+import ClickDiv from './ClickDiv'
+import RadioSelector from './RadioSelector'
 import data from '../reducers/data.json'
-import { Picker } from 'antd-mobile';
+import { Picker,DatePicker } from 'antd-mobile';
+import moment from 'moment';
+import style from './asset/css/index.less'
  
-
 export default class OutPut extends Component {
 
   render() {
-     
     let addressData = JSON.parse(sessionStorage.addressData);
-    // let addressDatas = JSON.parse(newAdd);
-   // 如果不是使用 List.Item 作为 children
-const CustomChildren = props => (
-  <li className={style.blank_li}  onClick={props.onClick}>
-    <label>{props.extra}</label>
-    {props.children}
-  </li>
-  
-);
     return (
-      <ul className="coat_ul">
+      <div className="coat_ul">
         <BlankLi item="姓名">
           {this.props.justRead ? this.props.holderName :
             <InputBox val={this.props.holderName} onChangeVal={this.props.onChangeHolderName} />
@@ -34,15 +25,56 @@ const CustomChildren = props => (
           }
         </BlankLi>
         <BlankLi item="证件类型">
-          {this.props.justRead ? data.HolderCertiType[this.props.holderCertiType] :
-            <ClickDiv val={data.HolderCertiType[this.props.holderCertiType]} onClickHandler={e => this.props.showHolderCertiTypeBox(this.props.holderCertiType)} />
+          {this.props.justRead ? data.HolderCertiType[this.props.HolderCertiType] :
+          <ClickDiv val={data.HolderCertiType[this.props.holderCertiType]} onClickHandler={e => this.props.showHolderCertiTypeBox(this.props.holderCertiType)}/>
           }
         </BlankLi>
-        <BlankLi item="证件号码">
+        <BlankLi item="证件号">
           {this.props.justRead ? this.props.holderCertiNo :
             <InputBox val={this.props.holderCertiNo} onChangeVal={this.props.onChangeHolderNo} maxLength="18" />
           }
         </BlankLi>
+        <DatePicker
+          mode="date"
+          value={this.props.holderBirthday?moment(this.props.holderBirthday):null}
+          extra={"请选择"}
+          onOk={date => this.props.onChangeHolderBirthday(moment(date).format('YYYY-MM-DD'))}
+          disabled={this.props.holderCertiType?false:true}
+        >  
+          <BlankLi item="出生日期">     
+          </BlankLi>
+        </DatePicker>
+        <DatePicker
+          mode="date"
+          value={this.props.certiNoEffictive?moment(this.props.certiNoEffictive):moment() }
+          extra={"请选择"}
+          onOk={date => this.props.changeEffictive(moment(date).format('YYYY-MM-DD'))}
+        >  
+          <BlankLi item="证件有效期">
+          </BlankLi>
+       </DatePicker>
+       
+        <BlankLi item="长期有效">
+          <label className={style.radio_style} onClick={e=>this.props.changeEffictive()}>
+            <img src={this.props.longEffective ? ctx + '/static/img/carInf/radio_on.png' : ctx + '/static/img/carInf/radio_off.png'} />
+          </label>
+        </BlankLi>
+        <div className={style.idCard}>
+          <label>证件影像</label>
+         
+          <div className={style.idCardContent}>
+            <div className={style.idCardImg}>
+              <img src={this.props.fontimg} />
+              <input type="file" accept="image/*" onChange={e=>this.props.imageuploaded(e,"font")}/>
+            </div>
+            <div className={style.idCardImg}>
+              <img src={this.props.backimg} />
+              <input type="file" accept="image/*" onChange={e=>this.props.imageuploaded(e,"back")}/>
+            </div>
+          </div>
+        </div>
+        
+        
         <BlankLi item="邮箱">
           {this.props.justRead ? this.props.holderEmail :
           <InputBox val={this.props.holderEmail} onChangeVal={this.props.onChangeHolderEmail} tip="用于接收电子保单"/>
@@ -58,12 +90,12 @@ const CustomChildren = props => (
           <BlankLi item="投保地区"></BlankLi>
         </Picker>
         <BlankLi item="详细地址">
-          {this.props.justRead ? this.props.holderAddress :
-          <InputBox val={this.props.holderAddress} onChangeVal={this.props.onChangeHolderAddress} tip="用于接收电子保单"/>
-          }
+           <InputBox val={this.props.holderLocation} onChangeVal={this.props.onChangeHolderLocation} tip="请输入详细地址"/>
         </BlankLi>
-
-      </ul>
+        <BlankLi item="邮政编码">
+           <InputBox val={this.props.holderZipCode} onChangeVal={this.props.onChangeHolderZipCode} tip="请输入邮政编码" maxLength="6"/>
+        </BlankLi>
+      </div>
     )
   };
 }

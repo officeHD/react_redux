@@ -1,0 +1,164 @@
+/**
+ * 文件：预定义 样式less 
+ * 作者：无名小强
+ * 版本：v0.2
+ * 版权：民盛集团
+ * 日期：2016-2-26
+**/
+/*CSS简写*/
+/*颜色*/
+/*清除浮动*/
+/*清除浮动占位符*/
+/*单行文字垂直居中*/
+/*宽和高*/
+/*正方形*/
+/*圆*/
+/*矩形圆角*/
+/*下方阴影*/
+/*箭头向下*/
+/*箭头向上*/
+/*箭头向左*/
+/*箭头向右*/
+/*倾斜*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+input,
+p,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: #333;
+  font-size: 28px;
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+img {
+  border: 0;
+  width: 100%;
+}
+ol,
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+input,
+button,
+select,
+textarea {
+  outline: none;
+}
+textarea {
+  resize: none;
+}
+p {
+  text-align: justify;
+  text-justify: distribute;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+a:hover {
+  color: #f60;
+  text-decoration: none;
+}
+:global(.hide) {
+  display: none;
+}
+.top_img {
+  font-size: 28px;
+  display: block;
+  width: 100%;
+}
+.words {
+  width: 100%;
+  height: 90px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  top: -90px;
+  margin-bottom: -90px;
+  font-size: 32px;
+  line-height: 1.1;
+  padding: 10px 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.words p {
+  width: 100%;
+  text-align: center;
+}
+.words span {
+  font-size: 24px;
+}
+.totalMoney {
+  font-size: 34px;
+  background-color: #fff;
+  height: 80px;
+  line-height: 80px;
+  padding-left: 20px;
+  color: #DB251F;
+}
+.titlePlan {
+  height: 80px;
+  margin-top: 20px;
+  background-color: #fff;
+  line-height: 80px;
+  padding-left: 20px;
+  border-bottom: 1Px solid #ccc;
+}
+.plan_list {
+  height: 80px;
+  overflow: hidden;
+  border-bottom: 1Px solid #ccc;
+}
+.plan_list .plan_title {
+  text-align: left;
+  height: 80px;
+  padding: 0 20px;
+  line-height: 80px;
+  background-color: #fff;
+  font-size: 30px;
+  color: #000;
+}
+.plan_content {
+  background-color: #fff;
+}
+.plan_box {
+  width: 90%;
+}
+.plan_box .left_box {
+  background: #db6d98;
+  /* 一些不支持背景渐变的浏览器 */
+  background: gradient(top, #db6d98, #ec6975);
+  background: -o-linear-gradient(top, #db6d98, #ec6975);
+  width: 30%;
+  height: 200px;
+  text-align: center;
+}

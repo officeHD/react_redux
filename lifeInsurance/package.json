@@ -7,7 +7,7 @@
     "dev": "node ./server.js",
     "build": "webpack --progress --colors"
   },
-  "author": "hd",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "~6.5.1",
@@ -49,14 +49,17 @@
   "dependencies": {
     "antd-mobile": "~1.0.0",
     "antd-mobile-demo-data": "^0.2.0",
+    "flux": "^3.1.0",
     "history": "^3.3.0",
     "object-assign": "^4.1.0",
     "react": "^15.3.2",
+    "react-core-image-upload": "^2.2.3",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^3.0.0",
     "react-router-scroll": "^0.4.1",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0" 
+    "redux-thunk": "^2.1.0",
+    "z-ajax": "^1.0.9"
   }
 }

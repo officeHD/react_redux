@@ -1,26 +1,16 @@
 import React from 'react'
-import BlankLi from './public/BlankLi'
-import InputBox from './public/InputBox'
-import ClickDiv from './public/ClickDiv'
-
+import style from './asset/css/index.less'
 const OutPut = ({ insuredId, fee, applyNum}) => {
 
   return (
-    <ul className="coat_ul">
-      <BlankLi item="订单编号">
-        {insuredId}
-      </BlankLi>
-      <BlankLi item="商品名称">
-        个人综合意外险
-      </BlankLi>
-      <BlankLi item="商品单价">
-        100.00
-      </BlankLi>
-      <BlankLi item="购买份数">
-        {applyNum} 份
-      </BlankLi>
-      
-    </ul>
+    <div className={style.orderdetail}>
+      <label>订单概况</label>
+      <ul>
+          <li>保险期限：{insuredId} </li>        
+          <li>保险额度：{insuredId} </li>        
+          <li>保费：<span>{fee}</span> </li>        
+      </ul>
+    </div>
   )
 }
 

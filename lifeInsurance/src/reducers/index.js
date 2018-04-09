@@ -3,6 +3,20 @@ import * as act from '../actions'
 import { dateToString } from '../api'
 import data from './data.json'
 
+
+
+//步骤
+const fee = (state = 0, action) => {
+    switch (action.type) {
+        case act.CHANFE_FEE:
+            return action.val
+        case act.INIT_EDIT_DATA:
+            return action.fee
+        default:
+            return state
+    }
+}
+
 //步骤
 const step = (state = 0, action) => {
     switch (action.type) {
@@ -82,10 +96,61 @@ const holderName = (state = '', action) => {
     }
 }
 
+// 证件有效期
+const longEffective = (state = false, action) => {
+    switch (action.type) {
+        case act.CHANGE_EFFICTIVE:
+            if (!action.val) {
+                return !state
+            } else if (action.val !== "9999-12-31") {
+                return false
+            }
+        default:
+            return state
+    }
+}
+const certiNoEffictive = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_EFFICTIVE:
+            if (action.val) {
+                return action.val
+            } else {
+                return "9999-12-31"
+            }
+        default:
+            return state
+    }
+}
+// 证件有效期
+const fontimg = (state = `${ctx}/static/img/lifeInsurance/cardFont.png`, action) => {
+    switch (action.type) {
+        case act.CHANGE_CARD_IMG:
+
+            if (action.typeWay === "font") {
+                return action.val
+            }
+
+        default:
+            return state
+    }
+}
+// 证件有效期
+const backimg = (state = `${ctx}/static/img/lifeInsurance/cardBack.png`, action) => {
+    switch (action.type) {
+        case act.CHANGE_CARD_IMG:
+            if (action.typeWay === "back") {
+                return action.val
+            }
+        default:
+            return state
+    }
+}
+
 //投保人证件类型
 const holderCertiType = (state = 0, action) => {
     switch (action.type) {
         case act.CHANGE_HOLDER_CERTI_TYPE:
+
             return action.index
         case act.INIT_EDIT_DATA:
             let index = 0;
@@ -100,11 +165,31 @@ const holderCertiType = (state = 0, action) => {
             return state
     }
 }
+//投保人证件类型值
+const holderCertiTypeVal = (state = 0, action) => {
+    switch (action.type) {
+        case act.CHANGE_HOLDER_CERTI_TYPE:
+            let value = 0;
+            data.HolderCertiTypeValue.map((el, index2) => {
+                if (index2 === action.index) {
+                    value = el;
+                }
+            });
+
+            return value
+        case act.INIT_EDIT_DATA:
+            return action.entity.policyHolder.holderCertiType
+        default:
+            return state
+    }
+}
+
 
 //投保人证件号
 const holderCertiNo = (state = '', action) => {
     switch (action.type) {
         case act.CHANGE_HOLDER_NO:
+
             return action.val
         case act.INIT_EDIT_DATA:
             return action.entity.policyHolder.holderCertiNo
@@ -202,6 +287,25 @@ const holderAddressLabel = (state = [], action) => {
     }
 }
 
+//投保人地址
+const holderLocation = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_HOLDERLOCATION:
+            return action.val
+        default:
+            return state
+    }
+}
+//投保人邮编
+const holderZipCode = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_HOLDER_ZIPCODE:
+            return action.val
+        default:
+            return state
+    }
+}
+
 //被保人姓名
 const insurantName = (state = '', action) => {
     switch (action.type) {
@@ -221,6 +325,7 @@ const insurantName = (state = '', action) => {
 const insurantCertiType = (state = 0, action) => {
     switch (action.type) {
         case act.CHANGE_INSURANT_CERTI_TYPE:
+
             return action.index
         case act.INIT_EDIT_DATA:
             let index = 0;
@@ -237,6 +342,25 @@ const insurantCertiType = (state = 0, action) => {
             return state
     }
 }
+//被保人证件类型值
+const insurantCertiTypeVal = (state = 0, action) => {
+    switch (action.type) {
+        case act.CHANGE_INSURANT_CERTI_TYPE:
+            let value = 0;
+            data.HolderCertiTypeValue.map((el, index2) => {
+                if (index2 === action.index) {
+                    value = el;
+                }
+            });
+            console.log(value)
+            return value
+        case act.INIT_EDIT_DATA:
+            return action.entity.policyHolder.insurantList[0].insurantCertiType
+        default:
+            return state
+    }
+}
+
 
 //被保人证件号
 const insurantCertiNo = (state = '', action) => {
@@ -327,7 +451,6 @@ const forInsuredPerson = (state = ['00'], action) => {
     switch (action.type) {
         case act.CHANGE_FOR_INSURED:
             return action.val
-
         default:
             return state
     }
@@ -728,15 +851,37 @@ const countiesData = (state = [], action) => {
     }
 }
 
+const attenA = (state = true, action) => {
+    switch (action.type) {
+        case act.CHANGE_ATTENA:
+            return !state
+        default:
+            return state
+    }
+}
+const attenB = (state = true, action) => {
+    switch (action.type) {
+        case act.CHANGE_ATTENB:
+            return !state
+        default:
+            return state
+    }
+}
 
 const rootReducer = combineReducers({
+    fee,
     step,
     staffId,
     worknum,
     type,
     effectiveDate,
+    longEffective,
+    certiNoEffictive,
     holderCertiType,
+    holderCertiTypeVal,
     holderCertiNo,
+    fontimg,
+    backimg,
     holderName,
     holderBirthday,
     holderGender,
@@ -746,6 +891,7 @@ const rootReducer = combineReducers({
     holderAddressLabel,
     insurantCertiType,
     insurantCertiNo,
+    insurantCertiTypeVal,
     insurantName,
     insurantBirthday,
     insurantGender,
@@ -782,6 +928,8 @@ const rootReducer = combineReducers({
     policyNo,
     isEdit,
     occupation,
+    attenA,
+    attenB
 
 })
 

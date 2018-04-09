@@ -6,6 +6,8 @@ const pxtorem = require('postcss-pxtorem');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
+
+    // 众安驾乘意外险
     entry: "./src/index",
     output: {
         path: "/Workspaces2018/mstps/WebRoot/static/js/mobile/anbang/anxinli",
@@ -46,13 +48,13 @@ module.exports = {
             loader: "style!css?modules&localIdentName=[hash:base64:10]!postcss!less"
         }]
     },
-    postcss: function () {
+    postcss: function() {
         return [
             autoprefixer({
                 browsers: ['last 3 versions', '> 1%']
             }),
             pxtorem({
-                rootValue: 20,
+                rootValue:20,
                 propWhiteList: [],
             }),
             cssnano
@@ -67,9 +69,9 @@ module.exports = {
             compress: {
                 warnings: false
             }
+
         }),
-        //开启gizp压缩， 
-        new CompressionPlugin({ 
+        new CompressionPlugin({ //开启gizp压缩， 
             asset: "[path].gz[query]",
             algorithm: "gzip",
             test: /\.js$|\.css$|\.html$/,
@@ -78,10 +80,10 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: "production"
+                NODE_ENV: '"production"'
             }
         }),
         new webpack.BannerPlugin("民盛保代 版权所有"),
-        new BundleAnalyzerPlugin()
+         new BundleAnalyzerPlugin()
     ],
 };

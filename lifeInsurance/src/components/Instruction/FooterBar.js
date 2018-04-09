@@ -3,12 +3,15 @@ import style from '../asset/css/Instruction.less'
 import { Icon } from 'antd-mobile';
 import { Link } from 'react-router';
  
-export default class Instruction extends Component {
+ 
+ export default class Instruction extends Component {
   constructor(props){
-      super(props);  
-  }
+      super(props);
+      
+      
+    }
     
-  render() {
+   render() {
     return (
       <div className={style.footer}>
         <ul>

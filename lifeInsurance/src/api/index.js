@@ -2,30 +2,39 @@ import zAJAX from './z-ajax'
 import data from '../reducers/data.json'
 import { Toast } from 'antd-mobile';
 
-//获取省市县数据
-export const getAddressData = (cb) => {
-    zAJAX(`${ctx}/static/asset/addressDatas`,'', cb)
-}
-// 获取职业数据
-export const getJobList = (cb) => {
-    zAJAX(`${ctx}/static/asset/jobListOther`,'', cb)
-}
 
-//获取用户信息
-export const getPersonInfo = (staffId,key, cb) => {
-    zAJAX(`${ctx}/appZhongan/personal/get_customer`, { workNum:staffId,key:key}, cb)
-}
-//如果是编辑页面，初始化编辑数据
-export const getEditDate = (state, id, cb) => {
-    zAJAX(`${ctx}/appZhongan/personal/detail`, { id: id }, cb)
-}
+// 获取价值保费
+export const getRate = (state, cb) => {
 
+    let data = {
+        sex: state.insurantGender||1,
+        age:state.insurantAge||18,
+        payendyear:state.payendyear||20,
+        tbage:state.holderAge||20,
+        varietyCode:state.varietyCode||16050,
+        amnt:state.amnt||2000
+    }
+    zAJAX(`${ctx}/app/hengqin/get_rate`, data, cb)
+}
 
 
 //获取钱包账户余额
 export const getBalance = (state, cb) => {
     zAJAX(`${ctx}/appZhongan/personal/get_staff`, { staffId: state.staffId }, cb)
 }
+
+//获取用户信息
+export const getPersonInfo = (staffId, key, cb) => {
+    zAJAX(`${ctx}/appZhongan/personal/get_customer`, { workNum: staffId, key: key }, cb)
+}
+//获取地址
+export const getAddressData = (cb) => {
+    zAJAX(`${ctx}/static/asset/addressDatas`, '', cb)
+}
+export const getJobList = (cb) => {
+    zAJAX(`${ctx}/static/asset/jobListOther`, '', cb)
+}
+
 //向后端获取数据
 export const sendData = (state, type, cb) => {
     //被保人是投保人本人
@@ -75,12 +84,12 @@ export const sendData = (state, type, cb) => {
         }]
     }
     //众安收银台
-    if(type==="desk"){
+    if (type === "desk") {
         zAJAX(`${ctx}/appZhongan/personal/insert_card_order_free`, { data: JSON.stringify(datas) }, cb)
-    }else{
-        zAJAX(`${ctx}/appZhongan/personal/insert_card_order`, { data: JSON.stringify(datas),type:type }, cb)
+    } else {
+        zAJAX(`${ctx}/appZhongan/personal/insert_card_order`, { data: JSON.stringify(datas), type: type }, cb)
     }
-    
+
 }
 
 
@@ -99,7 +108,7 @@ export const submitCards = (state, cb) => {
         personPremium: state.personPremium, //个人付款金额
         insuranceId: ids.join(','), //安康守护卡卡号
         password: pwd.join(','), //密码
-        
+
     }
     zAJAX(`${ctx}/appZhongan/personal/ankang_login`, datas, cb)
 }
@@ -258,7 +267,7 @@ export const IdentityCodeValid = (code) => {
             }
         }
     }
-    if (!pass) Toast.info(tip,2);
+    if (!pass) Toast.info(tip, 2);
     return pass;
 }
 
@@ -280,6 +289,24 @@ export const dateToString = (time) => {
     return year + '-' + month + '-' + date;
 }
 
+//获取年龄
+export const getAge = (val) => {
+    let ageVal;
+    let birthDate = new Date(val);
+    let nowDateTime = new Date();
+    ageVal = nowDateTime.getFullYear() - birthDate.getFullYear();
+    if (nowDateTime.getMonth() < birthDate.getMonth() || (nowDateTime.getMonth() == birthDate.getMonth() && nowDateTime.getDate() < birthDate.getDate())) {
+        ageVal--;
+    }
+    if (ageVal === 0) {
+        let diff = nowDateTime.valueOf() - birthDate.valueOf();
+        let diff_day = parseInt(diff / (1000 * 60 * 60 * 24));
+        if (diff_day < 28) {
+            ageVal = 0.5;
+        }
+    }
+    return ageVal;
+}
 //从地址栏里获取数据
 export const getDataFromUrl = (name) => {
     //构造一个含有目标参数的正则表达式对象  
@@ -291,3 +318,9 @@ export const getDataFromUrl = (name) => {
     return null;
 }
 
+
+
+//如果是编辑页面，初始化编辑数据
+export const getEditDate = (state, id, cb) => {
+    zAJAX(`${ctx}/appZhongan/personal/detail`, { id: id }, cb)
+}

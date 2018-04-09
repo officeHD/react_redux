@@ -3,6 +3,7 @@ import { goToStep, getBalance, changeIsLoading } from '../actions'
 import Step3 from '../components/Step3'
 
 const mapStateToProps = (state) => ({
+  holderName:state.holderName,
   step:3, 
 })
 
@@ -12,9 +13,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const Step3Container = connect(
+const Container = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Step3)
 
-export default Step3Container
+export default Container

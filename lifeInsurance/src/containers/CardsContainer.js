@@ -11,6 +11,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  // onChangePersonPremium: (val) => {
+  //   dispatch(changePersonPremium(val))
+  // },
   onChangInput: (index, item, val) => {
     dispatch(changeCards(index, item, val))
   },
@@ -19,9 +22,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const CardsContainer = connect(
+const Container = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Cards)
 
-export default CardsContainer
+export default Container

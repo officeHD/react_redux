@@ -1,9 +1,46 @@
 {
-  "HolderCertiType" : ["身份证"],
-  "HolderCertiTypeValue" : ["I"],
+  "HolderCertiType" : ["身份证","护照","军人证（军官证）","驾照","户口本","学生证 ","工作证","出生证","其它","无证件","士兵证","回乡证","临时身份证","警官证","台胞证","港、澳、台通行证"],
+  "HolderCertiTypeValue" : ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"],
   "HolderGender" : ["男", "女"],
   "HolderGenderValue" : ["M", "F"],
   "ApplyNum" : [1, 2, 3],
-  "forInsuredPerson": [{"value": "00","label": "本人"}, {"value": "01","label": "父母"}, {"value": "02","label": "配偶"},{"value": "03","label": "子女"}, {"value": "04","label": "祖孙"},{"value": "05","label": "监护"}, {"value": "06","label": "其他"}, {"value": "07","label": "保单服务人员"}, {"value": "08","label": "直系亲属"}],
-  "jobCategoryList": [{"value": "2022111","lifeRiskLev": "1","medicalRiskLev": "1","label": "机关公务员/企事业单位内勤"}, {"value": "3010101","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司内勤（行政/人力等办公室工作）"},{"value": "3010102","lifeRiskLev": "2","medicalRiskLev": "1","label": "公司外勤（销售/市场等联系工作）"}, {"value": "1050104","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司/企业负责人（不亲自作业）"}, {"value": "1050103","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司/企业部门经理（不亲自作业）"}, {"value": "4071506","lifeRiskLev": "1","medicalRiskLev": "1","label": "杂货商"}, {"value": "4019903","lifeRiskLev": "2","medicalRiskLev": "1","label": "个体摊贩"}, {"value": "8000001","lifeRiskLev": "2","medicalRiskLev": "1","label": "离退休人员（无兼职）"}, {"value": "4071203","lifeRiskLev": "1","medicalRiskLev": "1","label": "家庭主妇"},{"value": "2099907","lifeRiskLev": "1","medicalRiskLev": "1","label": "一般学生（非军校/武校等）"}, {"value": "2099908","lifeRiskLev": "1","medicalRiskLev": "1","label": "学龄前儿童/婴幼儿"}, {"value": "5010101","lifeRiskLev": "2","medicalRiskLev": "1","label": "农民（只种地不打工）"},{"value": "","lifeRiskLev": "","medicalRiskLev": "","label": "其他"}]
+  "forInsuredPerson": [
+    {"value": "00","label": "本人"}, 
+    {"value": "01","label": "父母"}, 
+    {"value": "02","label": "配偶"},
+    {"value": "03","label": "子女"}, 
+    {"value": "04","label": "祖孙"},
+    {"value": "05","label": "监护"}, 
+    {"value": "06","label": "其他"}, 
+    {"value": "07","label": "保单服务人员"}, 
+    {"value": "08","label": "直系亲属"}
+  ],
+  "payBank": [
+    {"value": "0101","label": "中国工商银行"}, 
+    {"value": "0102","label": "中国农业银行"}, 
+    {"value": "0103","label": "中国银行"},
+    {"value": "0104","label": "中国建设银行"}, 
+    {"value": "0108","label": "交通银行"},
+    {"value": "0109","label": "中信银行"}, 
+    {"value": "0111","label": "华夏银行"}, 
+    {"value": "0113","label": "广发银行"}, 
+    {"value": "0116","label": "兴业银行"},
+    {"value": "0117","label": "上海浦东发展银行"},
+    {"value": "0198","label": "平安银行"}
+  ],
+  "jobCategoryList": [
+    {"value": "2022111","lifeRiskLev": "1","medicalRiskLev": "1","label": "机关公务员/企事业单位内勤"}, 
+    {"value": "3010101","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司内勤（行政/人力等办公室工作）"},
+    {"value": "3010102","lifeRiskLev": "2","medicalRiskLev": "1","label": "公司外勤（销售/市场等联系工作）"}, 
+    {"value": "1050104","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司/企业负责人（不亲自作业）"}, 
+    {"value": "1050103","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司/企业部门经理（不亲自作业）"}, 
+    {"value": "4071506","lifeRiskLev": "1","medicalRiskLev": "1","label": "杂货商"}, 
+    {"value": "4019903","lifeRiskLev": "2","medicalRiskLev": "1","label": "个体摊贩"}, 
+    {"value": "8000001","lifeRiskLev": "2","medicalRiskLev": "1","label": "离退休人员（无兼职）"}, 
+    {"value": "4071203","lifeRiskLev": "1","medicalRiskLev": "1","label": "家庭主妇"},
+    {"value": "2099907","lifeRiskLev": "1","medicalRiskLev": "1","label": "一般学生（非军校/武校等）"}, 
+    {"value": "2099908","lifeRiskLev": "1","medicalRiskLev": "1","label": "学龄前儿童/婴幼儿"}, 
+    {"value": "5010101","lifeRiskLev": "2","medicalRiskLev": "1","label": "农民（只种地不打工）"},
+    {"value": "","lifeRiskLev": "","medicalRiskLev": "","label": "其他"}
+  ]
 }

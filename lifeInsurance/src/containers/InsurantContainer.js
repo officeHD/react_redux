@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { changeInsurantName, changeInsurantNo, getPersonInfo,showSelector, changeInsurantGender, changeInsurantBirthday, changeInsurantPhone, changeInsurantEmail,changeJobCategoryLabel,changeOccupationShow , changeJobCategory} from '../actions'
+import { changeInsurantName, changeInsurantNo, getPersonInfo,showSelector,changeAttentionA,changeAttentionB, changeInsurantGender, changeInsurantBirthday, changeInsurantPhone, changeInsurantEmail,changeJobCategoryLabel,changeOccupationShow , changeJobCategory} from '../actions'
 import Insurant from '../components/Insurant'
 import data from '../reducers/data.json'
 
@@ -59,9 +59,17 @@ const mapDispatchToProps = (dispatch) => ({
      
   }, 
   onChangeOccupationShow: () => {
+   
     dispatch(changeOccupationShow())
+  },
+  onchangeA:()=>{
+    
+    dispatch(changeAttentionA())
+  } ,
+  onchangeB:()=>{
+    
+    dispatch(changeAttentionB())
   }
-  
 })
 
 const Container = connect(

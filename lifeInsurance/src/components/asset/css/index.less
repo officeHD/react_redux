@@ -99,10 +99,111 @@ body {
     ;
 }
 
+//介绍页头部图片
+.top_img {
+    font-size: 28px;
+
+    .block;
+    .w100;
+}
+
+//介绍页的悬浮文字
+.words {
+    width: 100%;
+    height: 90px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: -90px;
+    margin-bottom: -90px;
+    font-size: 32px;
+    line-height: 1.3;
+    p {
+        padding-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    span {
+        font-size: 24px;
+    }
+}
+
+.bottom_b {
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+
+    li {
+        float: left;
+        width: 33.3%;
+        background-color: white;
+        color: #333;
+        text-align: center;
+        font-size: 32px;
+        line-height: 100px;
+        
+        -webkit-box-sizing: border-box;
+        
+                box-sizing: border-box;
+
+        &.normal {
+            background-color: @ms-red;
+            color: #fff;
+        }
+
+        &.default {
+            background-color: gray;
+            color: #fff;
+            pointer-events: none;
+        }
+
+
+        &.share {
+            background-color: @orange;
+            color: #fff;
+        }
+    }
+}
+.pbottom{
+    padding-bottom: 100px;
+}
+.bottom_btns {
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    li {
+        float: left;
+        width: 50%;
+        background-color: @orange;
+        color: #fff;
+        text-align: center;
+        font-size: 32px;
+        line-height: 100px;
+
+
+        &.normal {
+            background-color: @ms-red;
+            color: #fff;
+        }
+
+        &.default {
+            background-color: gray;
+            color: #fff;
+            pointer-events: none;
+        }
+    }
+}
+
 .footer {
     text-align: center;
     color: #ccc;
-    margin: 15px 0;
+    margin: 20px 0;
     svg {
         vertical-align: middle;
         margin: 0 20px;
@@ -111,6 +212,7 @@ body {
 
 .documents {
     .definition;
+
     p {
         font-size: 24px;
         color: #999;
@@ -532,6 +634,17 @@ body {
         border: 0;
         background-color: #fff;
     }
+    .radio_style{
+        width: 100px;
+        height: 100px;
+         
+       
+        img{
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+    }
 }
 
 //钱包支付
@@ -614,6 +727,7 @@ body {
 
 //单选选择器组件
 .radio_selector {
+
     font-size: 28px;
     .inline;
     .clearfix;
@@ -651,15 +765,59 @@ body {
 //下一步按钮
 .next_btn {
     font-size: 28px;
-    width: 96%;
+    width: 95%;
     margin: 40px 0 40px 2%;
-    background-color: @orange;
+    background-color: @red;
     color: #fff;
     border: 0;
     padding: 20px 0;
+    font-size: 34px;
     .radius;
 }
-
+.ordermes {
+    width: 90%;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    label {
+        height: 70px;
+        width: 100%;
+        display: inline-block;
+        line-height: 70px;
+        font-size: 32px;
+        color: @ms-red;
+        border-bottom: 1px solid #666;
+    }
+    ul {
+        margin: 10px 0;
+        li {
+            padding: 12px 20px;
+        }
+    }
+}
+.orderdetail{
+    width: 100%;
+    margin: 20px auto;
+    background-color: #fff;
+    
+    padding: 10px 20px;
+    label {
+        height: 70px;
+        width: 100%;
+        display: inline-block;
+        line-height: 70px;
+        font-size: 32px;
+       
+        border-bottom: 1px solid #666;
+    }
+    li {
+        padding: 12px 20px;
+        span{
+            color: #d9261d
+        }
+    }
+}
 //保险项目卡片
 .insure_item_card {
     font-size: 28px;
@@ -727,6 +885,7 @@ body {
     ul {
         width: 400px;
         background-color: #fff;
+        max-height: 80%;
         .p-a;
         top: 50%;
         left: 0;
@@ -735,7 +894,8 @@ body {
         border-radius: 20px;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
-        .o-h;
+        overflow: hidden;
+         overflow-y: auto;
         border: 0;
 
         li {
@@ -919,4 +1079,91 @@ body {
             padding: 10px 0;
         }
     }
+}
+.attention{
+    padding:0 20px;
+    a{
+        color: #d9261d;
+        text-decoration: underline;
+    }
+    .whitespace{
+        margin: 0 10px;
+        
+    }
+    .attlist{
+        margin-bottom: 15px;
+        input{
+            width: 1.4rem;
+            height: 1.4rem;
+            margin-right: 5px;
+            &::after{
+                content: "";
+                display: block;
+                width: 1.4rem;
+                height: 1.4rem;
+                text-align: center;
+                line-height: .7rem;
+                font-size: .8rem;
+                color: #fff;
+                border: .1rem solid #ddd;
+                background-color: #fff;
+                box-sizing: border-box;
+                border-radius: .2rem;
+            }
+            &:checked{
+                &::after{
+                    background: #159dff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2NjdlMGIzMC0yZDYyLTQ4MDEtODE2OC1lZGU0ZTFlZmU2MjEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjhCN0U5RjQyQUZGMTFFNzhDNzZFNUM0NkRFNTYwN0QiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjhCN0U5RjMyQUZGMTFFNzhDNzZFNUM0NkRFNTYwN0QiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Mzc1Mzg2My05MmRlLTQzMzktODkwMC1jODliNThiMzUwNWQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjY3ZTBiMzAtMmQ2Mi00ODAxLTgxNjgtZWRlNGUxZWZlNjIxIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+gPrRegAAAeFJREFUeNpiFJ37nwEIVIG4A4hdgJiPgTbgExDvAeIKIL7NCLRYHcg4AcQCDPQBH4DYgglItNHRUgaoXW1M0OClN3BjomGc4gM8TAwDBEYtphgIczAwHA5kYKg3xa+OhZqWCrIzMKz1YGBQF4Tgb38YGLrP09jHfGwMDCvdGRi0hBBivgo0DmouYLgtd2NgMBBBiD36zMAQsYtMi9mAshJc+C3lBFq61JWBwVQMIfbsKwND8A4ITbLFvKwMDKuB8XUkiIFBWwi3wxY4MzBYSyLEXn+HWPrwM5mpGhRflhKQuFsDdIAKP6alc5wYGBylEWJvfzAwhAAtvfuRgux04wNqFgFZLsMD4TMzMjBMs2dg8JBDqvN+MTCE72RguP6ewnxcepSBYccjBF+KG5JVZIGWT7JlYPBTRMh9+Q20FJiQLr0lPkGC6uP/+BIOKLVaSeA24Dswr0YCLT32goolF8jQuD24g+/XPwaG+L2kW0pUPgbFXSgwwdz/hGlp8j4GhgNPaVhWv4JmkafQfPkXGDmZBxgYdj6iQyXx5AsDQ9B2CJ17iIFh8wPKSju8iWu0Ph42Fn8aAHu/MEG7FfQGu0AWV0O7FfQCILuqQRbfAPVlgHgdEH+moYWfoXaA7LoBEGAA/zV9O+6SkegAAAAASUVORK5CYII=) no-repeat;
+                    background-size: 100%;
+                    border-color: transparent; 
+                }
+               
+            }
+
+        }
+    }
+}
+.idCard{
+    font-size: 1.4rem;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    padding: 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+   
+    label{
+        float: left;
+        line-height: 100px;
+    }
+    .idCardContent{
+        width: 100%;
+        height:160px;
+        box-sizing: border-box;
+        
+        padding-left: 160px;
+    }
+  
+    .idCardImg{
+        float: left;
+        width: 45%;
+        max-height: 200px;
+        // height: 130px;
+        text-align: center;
+        overflow: hidden;
+        margin:20px 2.5%;
+        position: relative;
+        img{
+            width:100%;
+        }
+        input{
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            height: 100%;
+
+        }
+    }
+    
 }
