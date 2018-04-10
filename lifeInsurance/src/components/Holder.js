@@ -7,9 +7,9 @@ import data from '../reducers/data.json'
 import { Picker,DatePicker } from 'antd-mobile';
 import moment from 'moment';
 import style from './asset/css/index.less'
- 
-export default class OutPut extends Component {
+import UploadImgContainer from '../containers/UploadImgContainer'
 
+export default class OutPut extends Component {
   render() {
     let addressData = JSON.parse(sessionStorage.addressData);
     return (
@@ -46,35 +46,22 @@ export default class OutPut extends Component {
         </DatePicker>
         <DatePicker
           mode="date"
-          value={this.props.certiNoEffictive?moment(this.props.certiNoEffictive):moment() }
+          value={this.props.certiNoEffictive?moment(this.props.certiNoEffictive):null }
           extra={"请选择"}
-          onOk={date => this.props.changeEffictive(moment(date).format('YYYY-MM-DD'))}
+          minDate={moment()}
+          maxDate={moment().add(20, "years")}
+          onOk={date => this.props.onChangeEffictive(moment(date).format('YYYY-MM-DD'))}
         >  
           <BlankLi item="证件有效期">
           </BlankLi>
        </DatePicker>
        
         <BlankLi item="长期有效">
-          <label className={style.radio_style} onClick={e=>this.props.changeEffictive()}>
+          <label className={style.radio_style} onClick={e=>this.props.onChangeEffictive()}>
             <img src={this.props.longEffective ? ctx + '/static/img/carInf/radio_on.png' : ctx + '/static/img/carInf/radio_off.png'} />
           </label>
         </BlankLi>
-        <div className={style.idCard}>
-          <label>证件影像</label>
-         
-          <div className={style.idCardContent}>
-            <div className={style.idCardImg}>
-              <img src={this.props.fontimg} />
-              <input type="file" accept="image/*" onChange={e=>this.props.imageuploaded(e,"font")}/>
-            </div>
-            <div className={style.idCardImg}>
-              <img src={this.props.backimg} />
-              <input type="file" accept="image/*" onChange={e=>this.props.imageuploaded(e,"back")}/>
-            </div>
-          </div>
-        </div>
-        
-        
+        <UploadImgContainer/>
         <BlankLi item="邮箱">
           {this.props.justRead ? this.props.holderEmail :
           <InputBox val={this.props.holderEmail} onChangeVal={this.props.onChangeHolderEmail} tip="用于接收电子保单"/>

@@ -12,7 +12,7 @@ import { Link } from 'react-router'
 import style from './asset/css/index.less'
 import Footer from './public/Footer'
 
-const Step1 = ({step, onGoToStep}) => (
+const Step1 = ({step,fee, onGoToStep}) => (
   <div className={style.pbottom}>
     <TitleBarStepContainer />
     <SubTitle title="投保人信息" />
@@ -22,7 +22,7 @@ const Step1 = ({step, onGoToStep}) => (
     <InsurantContainer/>
     <Footer/>
     <ul className={style.bottom_btns } >
-      <li> 100元</li>
+      <li> {fee}元</li>
       <li onClick={onGoToStep} className={ style.normal }> 下一步 </li>
     </ul>
     <SelectorContainer />

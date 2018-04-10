@@ -4,7 +4,7 @@ import TitleBar from '../components/TitleBar'
 import { Toast } from 'antd-mobile';
 
 const mapStateToProps = (state) => ({
-  title: '安邦安鑫利两全保险（万能型）A款',
+  title: '横琴金禧年年年金险',
   isEdit: state.isEdit,
   staffId: state.staffId,
    type: state.type,

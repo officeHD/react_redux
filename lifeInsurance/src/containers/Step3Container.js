@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { goToStep, getBalance, changeIsLoading } from '../actions'
+import { goToStep, apply, changeIsLoading } from '../actions'
 import Step3 from '../components/Step3'
 
 const mapStateToProps = (state) => ({
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onGoToStep: () => {
-    dispatch(getBalance())
+    dispatch(apply())
   }
 })
 

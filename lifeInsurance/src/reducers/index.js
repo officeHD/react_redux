@@ -5,7 +5,16 @@ import data from './data.json'
 
 
 
-//步骤
+//险种code
+const varietyCode = (state = 0, action) => {
+    switch (action.type) {
+        case act.SET_VARIETY_CODE:
+            return action.val
+        default:
+            return state
+    }
+}
+//保费
 const fee = (state = 0, action) => {
     switch (action.type) {
         case act.CHANFE_FEE:
@@ -16,14 +25,55 @@ const fee = (state = 0, action) => {
             return state
     }
 }
-
-//步骤
-const step = (state = 0, action) => {
+//份数
+const buyNum = (state = [10], action) => {
     switch (action.type) {
-        case act.GO_TO_STEP:
-            return Math.max(action.step, 0)
-        case act.INIT_EDIT_DATA:
-            return action.step
+        case act.CHANGE_BUYNUM:
+            return action.val
+
+        default:
+            return state
+    }
+}
+
+//保额
+const amnt = (state = 10000, action) => {
+    switch (action.type) {
+        case act.CHANGE_BUYNUM:
+            return action.val[0] * 1000
+
+        default:
+            return state
+    }
+}
+
+
+//缴费期间
+const payMent = (state = [10], action) => {
+    switch (action.type) {
+        case act.CHANGE_PAYMENT:
+            return action.val
+
+        default:
+            return state
+    }
+}
+
+//倒计时
+const second = (state = 0, action) => {
+    switch (action.type) {
+        case act.CHANGE_SECOND:
+            return action.val
+        default:
+            return state
+    }
+}
+//步骤
+const tabIndex = (state ='0', action) => {
+    switch (action.type) {
+       
+        case act.CHANGE_TAB:
+            return action.val
         default:
             return state
     }
@@ -49,10 +99,11 @@ const staffId = (state = '', action) => {
             return state
     }
 }
-const worknum = (state = '', action) => {
+const workNum = (state = '', action) => {
     switch (action.type) {
         case act.CHANGE_WORK_NUM:
-            return action.id
+
+            return action.val
         default:
             return state
     }
@@ -314,7 +365,6 @@ const insurantName = (state = '', action) => {
         case act.INIT_EDIT_DATA:
             return action.entity.insurantList[0].insurantName
         case act.CHANGE_INSURED_RELA_TO_HOLDER:
-
             return ''
         default:
             return state
@@ -325,7 +375,6 @@ const insurantName = (state = '', action) => {
 const insurantCertiType = (state = 0, action) => {
     switch (action.type) {
         case act.CHANGE_INSURANT_CERTI_TYPE:
-
             return action.index
         case act.INIT_EDIT_DATA:
             let index = 0;
@@ -412,6 +461,16 @@ const insurantBirthday = (state = '', action) => {
             return state
     }
 }
+//被保人年龄
+const insurantAge = (state = 0, action) => {
+    switch (action.type) {
+        case act.CHANGE_INSURANT_AGE:
+            return action.val
+
+        default:
+            return state
+    }
+}
 
 //被保人联系电话
 const insurantPhone = (state = '', action) => {
@@ -426,8 +485,8 @@ const insurantPhone = (state = '', action) => {
             return state
     }
 }
-//投保人地址
-const insurantAddressValue = (state = [], action) => {
+//被保人地址
+const insurantAddressValue = (state = ['', '', ''], action) => {
     switch (action.type) {
         case act.CHANGE_INSURANTADDRESSVALUE:
             return action.val
@@ -435,7 +494,7 @@ const insurantAddressValue = (state = [], action) => {
             return state
     }
 }
-//投保人地址名称
+//被保人地址名称
 const insurantAddressLabel = (state = [], action) => {
     switch (action.type) {
         case act.CHANGE_INSURANTADDRESSLABEL:
@@ -773,53 +832,9 @@ const isLoading = (state = false, action) => {
     }
 }
 
-//打开众安收银台 订单确认页面
-const isZACashier = (state = false, action) => {
-    switch (action.type) {
-        case act.CHANGE_IS_ZA_CASHIER:
-            return !state
-        case act.CHANGE_IS_OTHER_WAY:
-        case act.GO_TO_STEP:
-            return false
-        default:
-            return state
-    }
-}
 
-//打开其他支付方式
-const isOtherWay = (state = false, action) => {
-    switch (action.type) {
-        case act.CHANGE_IS_OTHER_WAY:
-            return !state
-        case act.CHANGE_IS_ZA_CASHIER:
-        case act.GO_TO_STEP:
-            return false
-        default:
-            return state
-    }
-}
 
-//个人钱包支付金额 0,100,200,300
-const personPremium = (state = 0, action) => {
-    switch (action.type) {
-        case act.CHANGE_PERSON_PREMIUM:
-            return action.val
-        default:
-            return state
-    }
-}
 
-//安康守护卡的信息
-const cards = (state = [{ insuranceId: '', password: '' }, { insuranceId: '', password: '' }, { insuranceId: '', password: '' }], action) => {
-    switch (action.type) {
-        case act.CHANGE_CARDS:
-            let copyArr = state.concat()
-            copyArr[action.index][action.item] = action.val
-            return copyArr
-        default:
-            return state
-    }
-}
 
 const provincesData = (state = [], action) => {
     switch (action.type) {
@@ -850,7 +865,7 @@ const countiesData = (state = [], action) => {
             return state
     }
 }
-
+//确认注意项
 const attenA = (state = true, action) => {
     switch (action.type) {
         case act.CHANGE_ATTENA:
@@ -859,6 +874,7 @@ const attenA = (state = true, action) => {
             return state
     }
 }
+//确认注意项
 const attenB = (state = true, action) => {
     switch (action.type) {
         case act.CHANGE_ATTENB:
@@ -868,12 +884,57 @@ const attenB = (state = true, action) => {
     }
 }
 
+//预留手机号
+const payPhone = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_PAYPHONE:
+            return action.val
+        default:
+            return state
+    }
+}
+//验证码
+const smsCode = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_SMSCODE:
+            return action.val
+        default:
+            return state
+    }
+}
+//卡号
+const bankNum = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_BANKNUM:
+            return action.val
+        default:
+            return state
+    }
+}
+//付款行
+const payBank = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_PAYBANK:
+            return action.val
+        default:
+            return state
+    }
+}
+
+
+
+
 const rootReducer = combineReducers({
+    varietyCode,
     fee,
-    step,
+    buyNum,
+    amnt,
+    payMent,
     staffId,
-    worknum,
+    workNum,
+    tabIndex,
     type,
+    second,
     effectiveDate,
     longEffective,
     certiNoEffictive,
@@ -889,11 +950,14 @@ const rootReducer = combineReducers({
     holderEmail,
     holderAddressValue,
     holderAddressLabel,
+    holderLocation,
+    holderZipCode,
     insurantCertiType,
     insurantCertiNo,
     insurantCertiTypeVal,
     insurantName,
     insurantBirthday,
+    insurantAge,
     insurantGender,
     insurantPhone,
     forInsuredPerson,
@@ -921,13 +985,13 @@ const rootReducer = combineReducers({
     citiesData,
     countiesData,
     balance,
-    isZACashier,
-    isOtherWay,
-    personPremium,
-    cards,
     policyNo,
     isEdit,
     occupation,
+    payBank,
+    payPhone,
+    bankNum,
+    smsCode,
     attenA,
     attenB
 

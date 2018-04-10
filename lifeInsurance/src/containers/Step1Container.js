@@ -1,22 +1,22 @@
 import { connect } from 'react-redux'
-import { checkHolder } from '../actions'
+import { checkOrder,getRate } from '../actions'
 import Step1 from '../components/Step1'
 
-const mapStateToProps = (state) => {
-	 
-	return({step:1})
-  
-} 
+const mapStateToProps = (state) => ({
+  fee:state.fee,
+  step: 1
+})
 
 const mapDispatchToProps = (dispatch) => ({
   onGoToStep: () => {
-    dispatch(checkHolder())
+    dispatch(getRate())
+    dispatch(checkOrder())
   }
 })
 
-const Container = connect(
+const Step1Container = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Step1)
 
-export default Container
+export default Step1Container

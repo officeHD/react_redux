@@ -1,38 +1,30 @@
 import React ,{Component}from 'react'
 import style from '../asset/css/Instruction.less'
 import { Icon } from 'antd-mobile';
-import { Link } from 'react-router';
- 
  
  export default class Instruction extends Component {
-  constructor(props){
-      super(props);
-      
-      
-    }
-    
+ 
    render() {
     return (
       <div className={style.footer}>
         <ul>
           <li>
-            <Link to="/SubFrame"  onClick={this.props.onClick}>
+            <a target="_blank"  href={`${ctx}/static/pdf/anbang/anxl/product.pdf`}>
                <Icon type={require(`../asset/svg/xuzhi.svg`)}/><br/>
-               投保须知
-             </Link>
+               信息披露
+            </a>
           </li>
           <li>
-            <Link to="/SubFrame" onClick={this.props.onClick}>
+            <a target="_blank"  href={`${ctx}/static/pdf/anbang/anxl/product.pdf`} >
               <Icon type={require(`../asset/svg/smile.svg`)}/><br/>
-              理赔服务
-            </Link>
-            
+              理赔须知
+            </a>
           </li>
           <li>
-            <Link to="/SubFrame" onClick={this.props.onClick}>
+            <a target="_blank"  href={`${ctx}/static/pdf/anbang/anxl/product.pdf`} >
               <Icon type={require(`../asset/svg/tiaokuan.svg`)}/><br/>
               保险条款
-            </Link>
+            </a>
           </li>
         </ul>
       </div>     

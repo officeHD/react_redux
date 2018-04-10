@@ -3,7 +3,7 @@ import { toggleShowParameter, goToStep } from '../actions'
 import TitleBar from '../components/TitleBar'
 
 const mapStateToProps = (state) => ({
-  title: '个人综合意外险',
+  title: '横琴金禧年年年金险',
   step: state.step,
   staffId: state.staffId,
   type: state.type,

@@ -34,7 +34,23 @@ body {
     z-index: 100;
     background-color: rgba(0, 0, 0, 0.5);
 }
-
+.selectbox{
+    border: 1px solid #DA251E;
+    display: inline;
+    padding: 12px 20px;
+    border-radius: 10px;
+    svg {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+        padding-left: 15px;
+        margin-left: 15px;
+        border-left: 1px solid #DA251E;
+        
+        
+        
+    }
+}
 //标题栏组件
 .title_bar {
     .w100;
@@ -171,6 +187,41 @@ body {
 .pbottom{
     padding-bottom: 100px;
 }
+.next_box{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #f2f2f2;
+    .next_btn{
+        font-size: 28px;
+        width: 90%;
+       margin: 0 5%;
+        background-color: @red;
+        color: #fff;
+        border: 0;
+        padding: 20px 0;
+        font-size: 34px;
+        .radius;
+    }
+}
+.article {
+    padding: 30px;
+     
+     padding-bottom: 150px;
+    p {
+        margin-right: 0px;
+        margin-left: 0px;
+        text-indent: 29px;
+
+        margin-top: 20px;
+        line-height: 1.75em;
+        &.article_title {
+            text-align: center;
+        }
+    }
+}
+
 .bottom_btns {
     width: 100%;
     height: 100px;
@@ -231,14 +282,14 @@ body {
 }
 
 .plan_list {
-    height: 70px;
+    height: 80px;
     overflow: hidden;
     border-bottom: 1Px solid #ccc;
     .plan_title{
         text-align: left;
-        height: 70px;
+        height: 80px;
         padding: 0 20px;
-        line-height: 70px;
+        line-height: 80px;
         background-color: #fff;
     }
 }
@@ -258,9 +309,9 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    height: 70px;
+    height: 80px;
     padding: 0 20px;
-    line-height: 70px;
+    line-height: 80px;
     -ms-flex-pack: distribute;
     justify-content: space-around;
     background-color: #fff;
@@ -800,7 +851,7 @@ body {
     width: 100%;
     margin: 20px auto;
     background-color: #fff;
-    
+box-sizing: border-box;
     padding: 10px 20px;
     label {
         height: 70px;
@@ -809,12 +860,39 @@ body {
         line-height: 70px;
         font-size: 32px;
        
-        border-bottom: 1px solid #666;
+        border-bottom: 1px solid #E6E6E6;
+        margin-bottom: 10px;
     }
     li {
-        padding: 12px 20px;
-        span{
+        padding: 0 20px;
+       height: 50px;
+       line-height: 50px;
+        .red{
             color: #d9261d
+        }
+        .title{
+            width: 140px;
+            display: inline-block;
+        }
+    }
+}
+.payPhone{
+    position: relative;
+    input{
+        width: 230px;
+    }
+    label{
+        position: absolute;
+        width: 210px;
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        border-left: 1Px solid #ccc;
+        right: 0;
+        top: 20px;
+        color: @ms-red;
+        &.default{
+            color: gray;
         }
     }
 }

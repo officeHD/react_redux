@@ -11,11 +11,11 @@ import Footer from './public/Footer'
 export default class Step2 extends Component {
 
   render() {
-    
+   
     return (
-      <div>
+      <div >
         <TitleBarStepContainer />
-        <div>
+        <div className={style.pbottom}>
           <OrderContainer/>
           
           <div className={style.ordermes}>
@@ -36,7 +36,7 @@ export default class Step2 extends Component {
                 <li>被保人与投保人关系：{this.props.forInsuredPerson} </li> 
                 <li>被保人职业：{this.props.jobCategory} </li>       
             </ul>
-            {this.props.forInsuredPerson[0] === '00'?
+            {this.props.forInsuredPerson[0] === '本人'?
             null:<ul>
                 <li>姓名：{this.props.insurantName} </li>             
                 <li>手机号码：{this.props.insurantPhone} </li>             
@@ -49,8 +49,10 @@ export default class Step2 extends Component {
           </div>
           <Footer/>
         </div>
-                      
-        <button className={style.next_btn} onClick={this.props.onGoToStep}>确定</button>
+        <div className={style.next_box}>
+          <button className={style.next_btn} onClick={this.props.onGoToStep}>确定</button>
+        </div>             
+       
         <LoadingContainer />
 
       </div>

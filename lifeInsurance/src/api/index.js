@@ -5,116 +5,264 @@ import { Toast } from 'antd-mobile';
 
 // 获取价值保费
 export const getRate = (state, cb) => {
-
     let data = {
-        sex: state.insurantGender||1,
-        age:state.insurantAge||18,
-        payendyear:state.payendyear||20,
-        tbage:state.holderAge||20,
-        varietyCode:state.varietyCode||16050,
-        amnt:state.amnt||2000
+        sex: state.insurantGender,
+        age: state.insurantAge,
+        payendyear: state.payMent[0] || 20,
+        tbage: state.holderAge || 20,
+        varietyCode: state.varietyCode || 16050,
+        amnt: state.amnt
     }
     zAJAX(`${ctx}/app/hengqin/get_rate`, data, cb)
 }
 
 
-//获取钱包账户余额
-export const getBalance = (state, cb) => {
-    zAJAX(`${ctx}/appZhongan/personal/get_staff`, { staffId: state.staffId }, cb)
-}
-
 //获取用户信息
-export const getPersonInfo = (staffId, key, cb) => {
-    zAJAX(`${ctx}/appZhongan/personal/get_customer`, { workNum: staffId, key: key }, cb)
+export const getPersonInfo = (workNum, key, cb) => {
+    zAJAX(`${ctx}/appZhongan/personal/get_customer`, { workNum: workNum, key: key }, cb)
 }
 //获取地址
 export const getAddressData = (cb) => {
     zAJAX(`${ctx}/static/asset/addressDatas`, '', cb)
 }
+//获取工作json
 export const getJobList = (cb) => {
     zAJAX(`${ctx}/static/asset/jobListOther`, '', cb)
 }
 
-//向后端获取数据
-export const sendData = (state, type, cb) => {
+//投保
+export const sendData = (state, cb) => {
     //被保人是投保人本人
-    let self = state.insuredRelaToHolder === 0
-    //安康守护卡的id字符串
-    let cardsNum = data.ApplyNum[state.applyNum] - state.personPremium / 100
-    let insuranceId = '';
-    if (cardsNum) {
-        let ids = []
-        for (let i = 0; i < cardsNum; i++) {
-            ids.push(state.cards[i].insuranceId)
+    let self = state.forInsuredPerson[0] === "00"
+    let fontImg = state.fontimg;
+    let backImg = state.backimg;
+    if (fontImg.indexOf("base64") < 0 || backImg.indexOf("base64") < 0) {
+        fontImg = "";
+        backImg = "";
+    }
+    let datas = {
+        "orderId": state.orderId || '',
+        "bizContent": {
+            "agentCode": "WX00000002",
+            "orderNo": "30052112281000010420",
+            "payIntv": "12",
+            "payPeriod": "20",
+            "payPeriodFlag": "Y",
+            "proposeDate": "2017-08-25",
+            "saleItemId": "300516050",
+            "salesChannel": "3005",
+            "sumFirstPrem": 9240,
+            "valDate": "2017-09-20",
+            "count": 1,
+            "extendBody": "",
+            "appnt": {
+                "address": state.holderAddressLabel.join("") + state.holderLocation,
+                "birthday": state.holderBirthday,
+                "cellphone": state.holderPhone,
+                "certInvalidDate": state.certiNoEffictive,
+                "certiCode": state.holderCertiNo,
+                "certiType": state.holderCertiTypeVal,
+                "province": state.holderAddressValue[0],
+                "city": state.holderAddressValue[1],
+                "urbanArea": state.holderAddressValue[2],
+                "customerName": state.holderName,
+                "mail": state.holderEmail,
+                "nation": "CHN",
+                "zipCode": state.holderZipCode,
+                "esViewList": [{
+                    "image": fontImg,
+                    "imageType": "01"
+                },
+                {
+                    "image": backImg,
+                    "imageType": "02"
+                }
+                ],
+                "gender": state.holderGender,
+                "imparts": [{
+                    "informContext": "",
+                    "informId": "19",
+                    "informReply": "0",
+                    "sort": 1
+                },
+                {
+                    "informContext": "",
+                    "informId": "20",
+                    "informReply": "0",
+                    "sort": 2
+                },
+                {
+                    "informContext": "",
+                    "informId": "21",
+                    "informReply": "0",
+                    "sort": 3
+                },
+                {
+                    "informContext": "",
+                    "informId": "22",
+                    "informReply": "0",
+                    "sort": 4
+                },
+                {
+                    "informContext": "",
+                    "informId": "23",
+                    "informReply": "0",
+                    "sort": 5
+                },
+                {
+                    "informContext": "",
+                    "informId": "24",
+                    "informReply": "0",
+                    "sort": 6
+                },
+                {
+                    "informContext": "",
+                    "informId": "25",
+                    "informReply": "0",
+                    "sort": 7
+                },
+                {
+                    "informContext": "",
+                    "informId": "26",
+                    "informReply": "0",
+                    "sort": 8
+                }
+                ]
+
+            },
+
+            "insureds": [{
+                "customerName": state.insurantName,
+                "address": state.insurantAddressLabel.join("") + state.holderLocation,
+                "birthday": state.insurantBirthday,
+                "cellphone": state.insurantPhone,
+                "certInvalidDate": "2021-07-19",
+                "certiCode": state.insurantCertiNo,
+                "certiType": state.insurantCertiTypeVal,
+                "province": state.insurantAddressValue[0],
+                "city": state.insurantAddressValue[1],
+                "urbanArea": state.insurantAddressValue[2],
+                "insuProvince": state.insurantAddressValue[0],
+                "insuCity": state.insurantAddressValue[1],
+                "insuUrbanArea": state.insurantAddressValue[2],
+                "gender": state.insurantGender,
+                "jobCategory": state.jobCategory[0],
+                "relaToInsured": state.forInsuredPerson[0],
+                "socialInsuFlag": "0",
+                "isSatutoryBeneficiary": "0",
+                "mail": "xiadandan@zhongan.io",
+                "nation": "CHN",
+                "zipCode": "111111",
+                "bnfs": [{
+                    "birthday": "1980-01-01",
+                    "certInvalidDate": "9999-10-10",
+                    "certiCode": "11010119800101007x",
+                    "certiType": "0",
+                    "customerName": "肖红",
+                    "gender": "1",
+                    "grade": 1,
+                    "nation": "CHN",
+                    "rate": 100,
+                    "relation": "02",
+                    "type": "2"
+                }],
+                "risks": [{
+                    "amnt": 300000,
+                    "insuYear": "1000",
+                    "compensationRatio": "100",
+                    "annualPayLimit": "100",
+                    "lifePayLimit": "300 ",
+                    "drawAge": "65 ",
+                    "insuYearFlag": "Y",
+                    "mult": 1,
+                    "prem": state.fee,
+                    "riskCode": "16050"
+                }],
+                "imparts": [{
+                    "informContext": "",
+                    "informId": "19",
+                    "informReply": "0",
+                    "sort": 1
+                },
+                {
+                    "informContext": "",
+                    "informId": "20",
+                    "informReply": "0",
+                    "sort": 2
+                },
+                {
+                    "informContext": "",
+                    "informId": "21",
+                    "informReply": "0",
+                    "sort": 3
+                },
+                {
+                    "informContext": "",
+                    "informId": "22",
+                    "informReply": "0",
+                    "sort": 4
+                },
+                {
+                    "informContext": "",
+                    "informId": "23",
+                    "informReply": "0",
+                    "sort": 5
+                },
+                {
+                    "informContext": "",
+                    "informId": "24",
+                    "informReply": "0",
+                    "sort": 6
+                },
+                {
+                    "informContext": "",
+                    "informId": "25",
+                    "informReply": "0",
+                    "sort": 7
+                },
+                {
+                    "informContext": "",
+                    "informId": "26",
+                    "informReply": "0",
+                    "sort": 8
+                }
+                ]
+
+
+
+            }]
+
         }
-        insuranceId = ids.join(',')
     }
-    let datas = {
-        id: state.orderId, // 订单主键
-        holderId: state.holderId, // 投保人id
-        insuerId: state.insuerId, // 被保对象id
-        channelOrderNo: state.insuredId, // 订单号
-        effectiveDate: state.effectiveDate, // 保单起期
-        staffId: state.staffId, //员工ID
-        insureDate: "",
-        requireInvoice: "Y",
-        occupationCategory: state.occupation.occupationCategory, //被保人职业类别
-        contactMail: state.holderEmail,
-        insuranceId: insuranceId,
-        personPremium: state.personPremium, //个人付款金额
-        isEdit: state.isEdit,
-        policyHolderType: "1",
-        policyHolderUserName: state.holderName,
-        policyHolderCertiType: data.HolderCertiTypeValue[state.holderCertiType], // 投保人证件类型 个人： I身份证
-        policyHolderCertiNo: state.holderCertiNo, // 投保人证件号码
-        policyHolderGender: data.HolderGenderValue[state.holderGender], // 投保人性别 M男 F女
-        policyHolderBirthDate: state.holderBirthday, // 投保人出生日期
-        policyHolderPhone: state.holderPhone, // 投保人名称
-        insuredRelaToHolder: data.InsuredRelaToHolderValue[state.insuredRelaToHolder], //被保人与投保人的关系
-        premium: 100 * data.ApplyNum[state.applyNum], //保费总价
-        insurantUnit: data.ApplyNum[state.applyNum], //购买份数
-        insuredList: [{
-            insuredUserName: self ? state.holderName : state.insurantName, // 被保人名称
-            insuredCertiType: data.HolderCertiTypeValue[(self ? state.holderCertiType : state.insurantCertiType)], // 被保人证件类型 个人： I身份证 
-            insuredCertiNo: self ? state.holderCertiNo : state.insurantCertiNo, // 被保人证件号码
-            insuredBirthday: self ? state.holderBirthday : state.insurantBirthday, // 被保人出生日期
-            insuredPhone: self ? state.holderPhone : state.insurantPhone, // 被保人电话
-            insuredGender: data.HolderGenderValue[(self ? state.holderGender : state.insurantGender)], // 被保人性别 M男 F女
-            premium: 100 * data.ApplyNum[state.applyNum], //保费总价
-        }]
-    }
-    //众安收银台
-    if (type === "desk") {
-        zAJAX(`${ctx}/appZhongan/personal/insert_card_order_free`, { data: JSON.stringify(datas) }, cb)
-    } else {
-        zAJAX(`${ctx}/appZhongan/personal/insert_card_order`, { data: JSON.stringify(datas), type: type }, cb)
-    }
-
+    zAJAX(`${ctx}/app/hengqin/insert_order`, { data: JSON.stringify(datas), workNum: state.workNum }, cb)
 }
 
+//支付
+export const payOrder = (state, cb) => {
+    let data = {
+        "orderId": state.orderId,
+        "bizContent": {
+            "bankCode": "",
+            "bankName": "",
+            "bankNo": "",
+            "callBackUrl": "",
+            "certNo": "",
+            "certType": "",
+            "currency": "",
+            "mobile": "",
+            "payOrderNo": "",
+            "proposalNo": "",
+            "salesChannel": "",
+            "tranAmt": "",
+            "transId": "",
+            "userName": "",
+            "smsCode": state.smsCode
+        }
 
-
-//验证安康守护卡的账号密码
-export const submitCards = (state, cb) => {
-    let cardsNum = data.ApplyNum[state.applyNum] - state.personPremium / 100
-    let ids = [],
-        pwd = [];
-    for (let i = 0; i < cardsNum; i++) {
-        ids.push(state.cards[i].insuranceId)
-        pwd.push(state.cards[i].password)
     }
-    let datas = {
-        sumPremium: data.ApplyNum[state.applyNum] * 100, //众安核心保费
-        personPremium: state.personPremium, //个人付款金额
-        insuranceId: ids.join(','), //安康守护卡卡号
-        password: pwd.join(','), //密码
+    zAJAX(`${ctx}/app/hengqin/pay`, data, cb)
 
-    }
-    zAJAX(`${ctx}/appZhongan/personal/ankang_login`, datas, cb)
 }
-
-
-
 
 //前往最后的页面
 export const goToPayNormal = (state) => {
@@ -184,7 +332,8 @@ const calculatedAge = (val) => {
 
 //校验数据有效性
 export const checkData = (str, text) => {
-    if (text === '') {
+    
+    if (text === ''||!text) {
         //非空验证
         Toast.info(`${str} 不得为空！`, 2);
         return false
@@ -291,6 +440,7 @@ export const dateToString = (time) => {
 
 //获取年龄
 export const getAge = (val) => {
+
     let ageVal;
     let birthDate = new Date(val);
     let nowDateTime = new Date();

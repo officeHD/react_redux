@@ -13,6 +13,14 @@ const Step1Container = (location, cb) => {
         cb(null, require('./containers/Step1Container').default);
     }, 'Step1Container');
 } 
+const SureHealthContainer = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('./containers/SureHealthContainer').default);
+    }, 'SureHealthContainer');
+}
+ 
+
+
 const Step2Container = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('./containers/Step2Container').default);
@@ -40,6 +48,9 @@ render(
   <Provider store={store}>
     <Router history={hashHistory} onUpdate={() => window.scrollTo(0, 0)}>
       <Route path="/" component={InstructionContainer}/>
+      
+      <Route path="/sure" getComponent={SureHealthContainer}/>
+      
       <Route path="/step1" getComponent={Step1Container}/>
       <Route path="/step2" getComponent={Step2Container}/>
       <Route path="/step3" getComponent={Step3Container}/>

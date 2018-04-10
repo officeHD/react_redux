@@ -1,5 +1,7 @@
 import { connect } from 'react-redux'
 import { checkInsurant } from '../actions'
+import { apply  } from '../actions'
+
 import Step2 from '../components/Step2'
 import data from '../reducers/data.json'
 const mapStateToProps = (state) => ({
@@ -34,7 +36,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onGoToStep: () => {
-    dispatch(checkInsurant())
+     
+      dispatch(apply());
   }
 })
 

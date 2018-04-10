@@ -1,12 +1,15 @@
 import { connect } from 'react-redux'
-import { goToStep, onShare, changeInsurantGender } from '../actions'
+import { goToStep, onShare, changeInsurantGender, changeBuyNum,changePayMent,getRate,changeInsurantBirthday } from '../actions'
 import PlanA from '../components/Instruction/PlanA'
 import { Toast } from 'antd-mobile';
 const mapDispatchTo = (state) => ({
     staffId: state.staffId,
-    fee:state.fee,
+    fee: state.fee,
     type: state.type,
     insurantGender: state.insurantGender,
+    insurantBirthday: state.insurantBirthday,
+    buyNum: state.buyNum,
+    payMent:state.payMent,
     buyNumArr: [
         { value: 1, label: "1份" },
         { value: 2, label: "2份" },
@@ -19,21 +22,15 @@ const mapDispatchTo = (state) => ({
         { value: 9, label: "9份" },
         { value: 10, label: "10份" }
     ],
-    buyNum: ['1'],
     payMentArry: [
         { value: "趸交", label: "趸交" },
+        { value: 3, label: "3年" },
         { value: 5, label: "5年" },
         { value: 10, label: "10年" },
-    ],
-    payMent:['5']
+    ]
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
-    changeBuyNum: (v) => {
-        console.log(v)
-
-    },
     onShare: () => {
         if (window.minsheng) {
             window.minsheng.share()
@@ -41,9 +38,23 @@ const mapDispatchToProps = (dispatch) => ({
             window.location.href = `sn://share`;
         }
     },
+    onChangeBuyNum: (val) => {
+        dispatch(changeBuyNum(val))
+        dispatch(getRate());
+    },
+    onChangePayMent:(val)=>{
+        dispatch(changePayMent(val))
+        dispatch(getRate());
+        
+    },
     //修改被保人性别
     onChangeInsurantGender: (option) => {
         dispatch(changeInsurantGender(option))
+        dispatch(getRate()); 
+    },
+    onChangeInsurantBirthday:(val)=>{
+        dispatch(changeInsurantBirthday(val));
+        dispatch(getRate());
     }
 })
 

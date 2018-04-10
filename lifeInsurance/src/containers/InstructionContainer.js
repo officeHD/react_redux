@@ -1,34 +1,30 @@
 import { connect } from 'react-redux'
-import { goToStep,onShare,changeInsurantGender } from '../actions'
+import { onShare } from '../actions'
 import Instruction from '../components/Instruction/'
 import { Toast } from 'antd-mobile';
 const mapDispatchTo = (state) => ({
   staffId: state.staffId,
   type: state.type,
-  fee: state.fee,
-  insurantGender: state.insurantGender
+  varietyCode: state.varietyCode,
+  fee: state.fee
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	
+
   onGoToStep: () => {
-       dispatch(goToStep(1))
-        location.href = '#/step1' 
+    location.href = '#/sure'
   },
-  onShare:()=>{
-  	 if(window.minsheng){
-             window.minsheng.share()
-        }else{
-            window.location.href=`sn://share`;    
-        }
-  },
-    //修改被保人性别
-    onChangeInsurantGender: (option) => {
-      dispatch(changeInsurantGender(option))
+  onShare: () => {
+    if (window.minsheng) {
+      window.minsheng.share()
+    } else {
+      window.location.href = `sn://share`;
     }
+  }
+
 })
 
- 
+
 const InstructionContainer = connect(
   mapDispatchTo,
   mapDispatchToProps

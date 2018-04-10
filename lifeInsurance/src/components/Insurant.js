@@ -55,6 +55,8 @@ export default class Insurant extends Component {
                   <InputBox val={this.props.insurantPhone} onChangeVal={this.props.onChangeInsurantPhone}/>          
                   }
                 </BlankLi>
+  
+                
               </div>}
               
               <Picker

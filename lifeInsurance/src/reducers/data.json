@@ -4,6 +4,13 @@
   "HolderGender" : ["男", "女"],
   "HolderGenderValue" : ["M", "F"],
   "ApplyNum" : [1, 2, 3],
+  "productList":[
+    {"varietyCode":"34010","name":"横琴宜家年金保险（万能型）保险"},
+    {"varietyCode":"16020","name":"横琴金禧年年年金保险"},
+    {"varietyCode":"12030","name":"横琴优爱宝定期寿险"},
+    {"varietyCode":"11010","name":"横琴优爱宝终身寿险"},
+    {"varietyCode":"16050","name":"横琴优康保终身重大疾病保险"}
+  ],
   "forInsuredPerson": [
     {"value": "00","label": "本人"}, 
     {"value": "01","label": "父母"}, 
@@ -28,6 +35,7 @@
     {"value": "0117","label": "上海浦东发展银行"},
     {"value": "0198","label": "平安银行"}
   ],
+
   "jobCategoryList": [
     {"value": "2022111","lifeRiskLev": "1","medicalRiskLev": "1","label": "机关公务员/企事业单位内勤"}, 
     {"value": "3010101","lifeRiskLev": "1","medicalRiskLev": "1","label": "公司内勤（行政/人力等办公室工作）"},
