@@ -1,49 +1,93 @@
 import React from 'react'
-import SubTitle from './SubTitle'
-import Charge from './Charge'
 import Plans from './Plans'
-import Feature from './Feature'
-import FooterBar from './FooterBar'
+import moment from 'moment';
+import { DatePicker, Picker } from 'antd-mobile';
+import style from '../asset/css/plan.less' 
+import RadioSelector from '../RadioSelector'
+import Detail16020 from './Detail16020'
+import Detail16050 from './Detail16050'
 
-import style from '../asset/css/index.less' 
+import data from '../../reducers/data.json' 
+import InputBox from '../InputBox'
 
-
-const Instruction = ({onGoToStep}) => (
-
+const Out = ({title,varietyCode,fee,amnt,insurantGender,insurantBirthday,buyNum,payMent,insuYear,insuYearArry,buyNumArr,payMentArry,onChangeBuyNum,onChangePayMent,onChangeInsurantGender,onChangeAmnt,onChangeInsurantBirthday}) =>{
+  return(
     <div>
-        <div className={style.detail}>
+      <img className={style.top_img} src={require(`../asset/img/banner/${varietyCode}.jpg`)}/>
+      <div className={style.words}><p>{title.imgp}</p><span>{title.imgs}</span></div>
+      <div >
           <div className={style.plan_list}>
             <div className={style.plan_title}>
-              <div>安邦安鑫利两全保险（万能型）A款</div>
+              <div>{title.title}</div>
             </div>
           </div>
-          <Plans title="投保年龄" tip="28天-70周岁"/>
-          <Plans title="缴费方式" tip="趸交"/>
-          <Plans title="保险期限" tip="10年"/>
-        </div>
-        <SubTitle  title="相关费用"/>
-        <Charge />
-        <SubTitle  title="保障范围"/>
-        <Plans 
-            title="身故保险金" 
-            tip="账户价值对比" 
-            more="被保险人保单年度初年龄，指保单年度第一日被保险人当时的年龄。被保险人保单年度初年龄未满 18 周岁，按账户价值比例100%赔付，已满 18 周岁但未满 41 周岁按160%，已满 41 周岁但未满 61 周岁按140%，已满 61 周岁按120%。"
-          />
-        <Plans 
-            title="满期保险金" 
-            tip="账户价值" 
-            more="保险期间届满时，被保险人仍然生存的，本公司按本保险合同保单账户价值给付“满期保险金”，本保险合同终止。" 
-        />
-        <Plans  
-          title="持续奖金" 
-          tip="账户价值的1%" 
-          more="在本保险合同有效期内，被保险人在第 5 个保单年度末仍然生存的，本公司将在该保单年度末按当时保单账户价值的 1%作为持续奖金计入保单账户。" 
-        />
-        <SubTitle  title="产品特色"/>
-        <Feature/>
-        <FooterBar/>
-        
+          <Plans title="投保年龄">
+            28天-55周岁
+          </Plans>
+          <DatePicker
+            mode="date"
+            value={insurantBirthday?moment(insurantBirthday):moment().subtract(1, "months") }
+            extra={"请选择"}
+            minDate={moment().subtract(65, "years")}
+            maxDate={moment().subtract(28, "days")}
+            onOk={date => onChangeInsurantBirthday(moment(date).format('YYYY-MM-DD'))}
+          >  
+            <Plans title="出生日期"> </Plans>
+          </DatePicker>
+          <Plans title="性别" > 
+              <RadioSelector a={data.HolderGender[0]} b={data.HolderGender[1]} selected={insurantGender} onSelect={onChangeInsurantGender}/>
+          </Plans>
+          <Plans title="保额" > 
+            <InputBox val={amnt/10000} onChangeVal={onChangeAmnt} tip="请输入保额" maxLength="2" />万元
+          </Plans>
+          {varietyCode==="16020"?<div>
+            <Plans  title="单份金额" >1000元每份</Plans>
+            <Picker
+                title="选择"
+                extra="请选择"
+                cols="1"
+                data={buyNumArr}
+                value={buyNum}
+                onOk={v => onChangeBuyNum(v)}
+              >
+                <Plans title="购买份数"></Plans>
+            </Picker>
+            </div>:null}
+            {varietyCode==="12030"? <Picker
+                  extra="请选择"
+                  cols="1"
+                  data={insuYearArry}
+                  value={insuYear}
+                  onOk={v => onChangePayMent(v)}
+                  disabled={true}
+                >
+                  <Plans  title="保险期间" ></Plans>
+              </Picker>:<Plans  title="保险期间" >终身</Plans>
+              
+            }
+            
+          <Picker
+              extra="请选择"
+              cols="1"
+              data={payMentArry}
+              value={payMent}
+              onOk={v => onChangePayMent(v)}
+            >
+              <Plans  title="交费期间" ></Plans>
+          </Picker>
+          <div className={style.totalMoney}>
+            {fee}元
+          </div>
+      </div>
+      
+      {varietyCode==="16050"?<Detail16050/>:null}
+      {varietyCode==="16020"?<Detail16020/>:null}
+      
     </div>
-)
+  )
+} 
 
-export default Instruction
+export default Out
+ 
+
+ 

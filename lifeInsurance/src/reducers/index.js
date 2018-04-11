@@ -4,6 +4,25 @@ import { dateToString } from '../api'
 import data from './data.json'
 
 
+// 标题名
+const titleName = (state = {}, action) => {
+    switch (action.type) {
+        case act.SET_TITLE_NAME:
+            return action.val
+        default:
+            return state
+    }
+}
+
+// 缴费期间
+const payMnetArry = (state =[], action) => {
+    switch (action.type) {
+        case act.SET_PAY_MENT:
+            return action.val
+        default:
+            return state
+    }
+}
 
 //险种code
 const varietyCode = (state = 0, action) => {
@@ -41,7 +60,9 @@ const amnt = (state = 10000, action) => {
     switch (action.type) {
         case act.CHANGE_BUYNUM:
             return action.val[0] * 1000
-
+        case act.SET_INIT_AMNT:
+            return action.val
+        
         default:
             return state
     }
@@ -173,6 +194,34 @@ const certiNoEffictive = (state = '', action) => {
     }
 }
 // 证件有效期
+const insurantEffective = (state = false, action) => {
+    switch (action.type) {
+        case act.CHANGE_INVALI_DATE:
+            if (!action.val) {
+                return !state
+            } else if (action.val !== "9999-12-31") {
+                return false
+            }
+        default:
+            return state
+    }
+}
+const certInvalidDate = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_INVALI_DATE:
+            if (action.val) {
+                return action.val
+            } else {
+                return "9999-12-31"
+            }
+        default:
+            return state
+    }
+}
+
+
+
+// 身份证正面
 const fontimg = (state = `${ctx}/static/img/lifeInsurance/cardFont.png`, action) => {
     switch (action.type) {
         case act.CHANGE_CARD_IMG:
@@ -226,7 +275,6 @@ const holderCertiTypeVal = (state = 0, action) => {
                     value = el;
                 }
             });
-
             return value
         case act.INIT_EDIT_DATA:
             return action.entity.policyHolder.holderCertiType
@@ -356,6 +404,25 @@ const holderZipCode = (state = '', action) => {
             return state
     }
 }
+//投保人邮编
+const insurantZipCode = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_INSURANT_ZIPCODE:
+            return action.val
+        default:
+            return state
+    }
+}
+//投保人邮编
+const insurantEmail = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_INSURANT_EMAIL:
+            return action.val
+        default:
+            return state
+    }
+}
+
 
 //被保人姓名
 const insurantName = (state = '', action) => {
@@ -401,7 +468,7 @@ const insurantCertiTypeVal = (state = 0, action) => {
                     value = el;
                 }
             });
-            console.log(value)
+         
             return value
         case act.INIT_EDIT_DATA:
             return action.entity.policyHolder.insurantList[0].insurantCertiType
@@ -495,7 +562,7 @@ const insurantAddressValue = (state = ['', '', ''], action) => {
     }
 }
 //被保人地址名称
-const insurantAddressLabel = (state = [], action) => {
+const insurantAddressLabel = (state = ['','',''], action) => {
     switch (action.type) {
         case act.CHANGE_INSURANTADDRESSLABEL:
             return action.val
@@ -503,7 +570,16 @@ const insurantAddressLabel = (state = [], action) => {
             return state
     }
 }
+//被保人详细地址
+const insurantLocation = (state ='', action) => {
+    switch (action.type) {
+        case act.CHANGE_INSURANT_LOCATION:
+            return action.val
 
+        default:
+            return state
+    }
+}
 
 //被保人与投保人关系: 0=(1本人), 1=(2配偶) ,2=(3子女), 3=(4父母), 4=(5其他)
 const forInsuredPerson = (state = ['00'], action) => {
@@ -742,6 +818,8 @@ const orderId = (state = '', action) => {
             return action.orderId
         case act.INIT_EDIT_DATA:
             return action.entity.id
+        case act.INIT_ORDERID:
+            return action.val
         case act.CLEAR_ID:
             return ''
         default:
@@ -911,10 +989,21 @@ const bankNum = (state = '', action) => {
             return state
     }
 }
-//付款行
-const payBank = (state = '', action) => {
+//卡号
+const healthy = (state = '', action) => {
     switch (action.type) {
-        case act.CHANGE_PAYBANK:
+        case act.CHECK_HEALTHY:
+            return action.val
+        default:
+            return state
+    }
+}
+
+//付款行
+const bankCode = (state = '', action) => {
+    switch (action.type) {
+        case act.CHANGE_BANK_CODE:
+            console.log(action.val)
             return action.val
         default:
             return state
@@ -925,6 +1014,9 @@ const payBank = (state = '', action) => {
 
 
 const rootReducer = combineReducers({
+    titleName,
+    healthy,
+    payMnetArry,
     varietyCode,
     fee,
     buyNum,
@@ -950,8 +1042,11 @@ const rootReducer = combineReducers({
     holderEmail,
     holderAddressValue,
     holderAddressLabel,
+    certInvalidDate,
+    insurantEffective,
     holderLocation,
     holderZipCode,
+    insurantZipCode,
     insurantCertiType,
     insurantCertiNo,
     insurantCertiTypeVal,
@@ -961,8 +1056,10 @@ const rootReducer = combineReducers({
     insurantGender,
     insurantPhone,
     forInsuredPerson,
+    insurantEmail,
     insurantAddressLabel,
     insurantAddressValue,
+    insurantLocation,
     jobCategory,
     jobCategoryLabel,
     applyNum,
@@ -988,7 +1085,7 @@ const rootReducer = combineReducers({
     policyNo,
     isEdit,
     occupation,
-    payBank,
+    bankCode,
     payPhone,
     bankNum,
     smsCode,

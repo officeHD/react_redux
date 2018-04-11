@@ -305,6 +305,7 @@ body {
     background-color: @orange;
     color: white;
 }
+
 .detail_title {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -320,6 +321,13 @@ body {
         text-align: left;
         &:last-child{
             text-align: right
+        }
+        input{
+            text-align: right;
+            height: 100%;
+            border: none;
+            width: 200px;
+            padding-right: 15px;
         }
     }
 }
@@ -795,7 +803,43 @@ body {
         }
     }
 }
-
+.healthy{
+    .tip {
+        width: 100%;
+        position: fixed;
+        bottom: 100px;
+        left: 0;
+        padding: 30px;
+        box-sizing: border-box;
+        background-color: #fff;
+        z-index: 10;
+        span {
+            display: block;
+            width: 60%;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 60px;
+            background-color: #f1f1f1;
+            text-align: center;
+            margin: 20px auto;
+            color: @ms-red;
+        }
+    }
+   
+    .mask {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .75);
+        bottom: 0;
+        height: 100%;
+        left: 0;
+   
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 100%;
+    }
+}
 //请选择DIV
 .click_div {
     font-size: 28px;

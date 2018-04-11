@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import PayOrder from '../components/PayOrder'
-import { changePayPhone, changeBankNum, changePayBank, getMesCode, changeSmsCode } from '../actions'
+import { changePayPhone, changeBankNum,changeBankCode, getMesCode, changeSmsCode } from '../actions'
 import data from '../reducers/data.json'
 import { Toast } from 'antd-mobile';
 
 const mapStateToProps = (state) => ({
-    bankVal: state.payBank,
+    bankCode: state.bankCode,
     holderName: state.holderName,
     bankNum: state.bankNum,
     payPhone: state.payPhone,
@@ -20,9 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
     onChangeBankNum: (val) => {
         dispatch(changeBankNum(val))
     },
-    onChangePayBank: (val) => {
-
-        dispatch(changePayBank(val))
+    onChangeBankCode: (val) => {
+        dispatch(changeBankCode(val))
     },
     onChangeSmsCode: (val) => {
         dispatch(changeSmsCode(val))

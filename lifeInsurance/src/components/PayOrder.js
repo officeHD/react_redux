@@ -18,8 +18,8 @@ export default class OutPut extends Component {
             extra="由通联提供支付服务"
             cols="1"
             data={data.payBank}
-            value={this.props.bankVal||null}
-            onOk={v => this.props.onChangePayBank(v)}
+            value={this.props.bankCode||null}
+            onOk={v => this.props.onChangeBankCode(v)}
             >
             <BlankLi item="付款银行"> </BlankLi>
         </Picker>
@@ -28,7 +28,7 @@ export default class OutPut extends Component {
              {this.props.holderName}
         </BlankLi>
         <BlankLi item="银行账号">
-           <InputBox val={this.props.bankNum} onChangeVal={this.props.onChangeBankNum} maxLength="18" />
+           <InputBox val={this.props.bankNum} onChangeVal={this.props.onChangeBankNum} maxLength="19" />
         </BlankLi>
                 
         <BlankLi item="预留手机号">

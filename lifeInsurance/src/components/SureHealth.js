@@ -22,11 +22,26 @@ export default class App extends Component {
                     <p> 4、您是否以被保险人的身份在其他保险公司投保人身保险，且保额超过50万？</p>
                     <p> 5、您是否患有或曾经患有:恶性肿瘤、白血病、中风（脑出血、脑梗塞）、心功能不全、严重高血压 (血压高于180/110 mmHg)、心肌梗塞、心肌病、肝硬化、肾功能不全、再生障碍性贫血、系统性红斑狼疮、癫痫、肢体残疾或瘫痪、精神或智力障碍、阿尔兹海默氏病（老年痴呆）、帕金森氏病、重症肌无力、多发性硬化症、失明、瘫痪、先天性疾病、遗传性疾病、艾滋病、服用或吸食成瘾性药物？</p>
                     <p>未成年人适用:<br/> 6、被保险人在我司及其他保险公司投保的人身险保险金额总额是否超过监管规定（不满10周岁20万、10周岁以上50万）？</p>
-                </div>       
-                <ul className={style.bottom_btns}>
-                    <li className={style.white} onClick={e=>this.props.handelClick(0)}> 部分情况有 </li>
-                    <li className={style.normal} onClick={e=>this.props.handelClick(1)}> 以上情况全无 </li>
-                </ul> 
+                </div>   
+                {this.props.healthy==="1"?
+                <div className={style.healthy}>
+                     <div className={style.mask}>
+                     </div>
+                     <div className={style.tip}>
+                         <p>很抱歉,被保人告知情况不符合投保要求，需要跟保险顾问咨询后进行投保，请联系客服确认后再进行投保！</p>
+                         <a href="tel:400691234"><span>400-69-1234</span></a>
+                         
+                     </div>
+                     <ul className={style.bottom_btns}>
+                        <li className={style.white} onClick={e=>this.props.handelClick("2")}>选错啦</li>
+                        <li className={style.normal} onClick={e=>this.props.handelClick("3")}>查看其它产品</li>
+                    </ul> 
+                 </div>:<ul className={style.bottom_btns}>
+                    <li className={style.white} onClick={e=>this.props.handelClick("1")}>部分情况有</li>
+                    <li className={style.normal} onClick={e=>this.props.handelClick("0")}>以上全无</li>
+                     </ul> 
+                }
+                
             </div>
         )
     };

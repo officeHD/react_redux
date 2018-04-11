@@ -1,16 +1,27 @@
 import { connect } from 'react-redux'
-import { checkOrder } from '../actions'
+import { checkHealthy} from '../actions'
 import SureHealth from '../components/SureHealth'
 
 const mapStateToProps = (state) => ({
-    fee: state.fee,
-    step: 1
+    healthy: state.healthy,
+  
 })
 
 const mapDispatchToProps = (dispatch) => ({
     handelClick: (val) => {
+        dispatch(checkHealthy(val));
         console.log(val);
-        window.location.replace("#/step1")
+        if(val==="0"){
+            window.location.replace("#/step1")
+        }else if(val==="3"){
+            if (window.minsheng) {
+                window.minsheng.clickOnAndroid();
+            }else{
+                window.location.href = "sn://clickOnIOS";
+                window.history.go(-1)
+            }
+        }
+        
     }
 })
 

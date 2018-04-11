@@ -1,6 +1,6 @@
 import React from 'react'
 import TitleBarInstructionContainer from '../../containers/TitleBarInstructionContainer'
-import PlanAContainer from '../../containers/PlanAContainer'
+import PlanContainer from '../../containers/PlanContainer'
 import FooterBar from './FooterBar'
 import Footer from '../public/Footer'
 import { Link } from 'react-router'
@@ -10,9 +10,7 @@ import style from '../asset/css/index.less'
 const Instruction = ({staffId,type,varietyCode,fee,onGoToStep,onShare}) => (
   <div className={style.pbottom}>
     <TitleBarInstructionContainer />
-    <img className={style.top_img} src={require(`../asset/img/banner/${varietyCode}.jpg`)}/>
-    <div className={style.words}><p>连续领取，月领越多</p><span>高额祝寿金，安享晚年</span></div>
-    <PlanAContainer/>
+    <PlanContainer/>
     <FooterBar/>
     <Footer />
     <ul className={type?style.bottom_b:style.bottom_btns } >

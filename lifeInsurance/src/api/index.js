@@ -11,7 +11,9 @@ export const getRate = (state, cb) => {
         payendyear: state.payMent[0] || 20,
         tbage: state.holderAge || 20,
         varietyCode: state.varietyCode || 16050,
-        amnt: state.amnt
+        amnt:state.amnt,
+        province:state.insurantAddressValue[0],
+        city:state.insurantAddressValue[1]
     }
     zAJAX(`${ctx}/app/hengqin/get_rate`, data, cb)
 }
@@ -43,18 +45,7 @@ export const sendData = (state, cb) => {
     let datas = {
         "orderId": state.orderId || '',
         "bizContent": {
-            "agentCode": "WX00000002",
-            "orderNo": "30052112281000010420",
-            "payIntv": "12",
-            "payPeriod": "20",
-            "payPeriodFlag": "Y",
-            "proposeDate": "2017-08-25",
-            "saleItemId": "300516050",
-            "salesChannel": "3005",
-            "sumFirstPrem": 9240,
-            "valDate": "2017-09-20",
-            "count": 1,
-            "extendBody": "",
+            "agentCode": "",
             "appnt": {
                 "address": state.holderAddressLabel.join("") + state.holderLocation,
                 "birthday": state.holderBirthday,
@@ -62,13 +53,8 @@ export const sendData = (state, cb) => {
                 "certInvalidDate": state.certiNoEffictive,
                 "certiCode": state.holderCertiNo,
                 "certiType": state.holderCertiTypeVal,
-                "province": state.holderAddressValue[0],
                 "city": state.holderAddressValue[1],
-                "urbanArea": state.holderAddressValue[2],
                 "customerName": state.holderName,
-                "mail": state.holderEmail,
-                "nation": "CHN",
-                "zipCode": state.holderZipCode,
                 "esViewList": [{
                     "image": fontImg,
                     "imageType": "01"
@@ -127,32 +113,18 @@ export const sendData = (state, cb) => {
                     "informReply": "0",
                     "sort": 8
                 }
-                ]
-
-            },
-
-            "insureds": [{
-                "customerName": state.insurantName,
-                "address": state.insurantAddressLabel.join("") + state.holderLocation,
-                "birthday": state.insurantBirthday,
-                "cellphone": state.insurantPhone,
-                "certInvalidDate": "2021-07-19",
-                "certiCode": state.insurantCertiNo,
-                "certiType": state.insurantCertiTypeVal,
-                "province": state.insurantAddressValue[0],
-                "city": state.insurantAddressValue[1],
-                "urbanArea": state.insurantAddressValue[2],
-                "insuProvince": state.insurantAddressValue[0],
-                "insuCity": state.insurantAddressValue[1],
-                "insuUrbanArea": state.insurantAddressValue[2],
-                "gender": state.insurantGender,
-                "jobCategory": state.jobCategory[0],
-                "relaToInsured": state.forInsuredPerson[0],
-                "socialInsuFlag": "0",
-                "isSatutoryBeneficiary": "0",
-                "mail": "xiadandan@zhongan.io",
+                ],
+                "mail": state.holderEmail,
                 "nation": "CHN",
-                "zipCode": "111111",
+                "province": state.holderAddressValue[0],
+                "urbanArea": state.holderAddressValue[2],
+                "zipCode": state.holderZipCode   
+            },
+            "count": 1,
+            "extendBody": "",
+            "insureds": [{
+                "address": state.insurantAddressLabel.join("") + state.insurantLocation,
+                "birthday": state.insurantBirthday,
                 "bnfs": [{
                     "birthday": "1980-01-01",
                     "certInvalidDate": "9999-10-10",
@@ -166,75 +138,118 @@ export const sendData = (state, cb) => {
                     "relation": "02",
                     "type": "2"
                 }],
+                "cellphone": state.insurantPhone,
+                "certInvalidDate":state.certInvalidDate,
+                "certiCode": state.insurantCertiNo,
+                "certiType": state.insurantCertiTypeVal,
+                "city": state.insurantAddressValue[1],
+                "customerName": state.insurantName,
+                "gender": state.insurantGender,
+                "imparts": [
+                    {
+                    "informContext": "",
+                    "informId": "19",
+                    "informReply": "0",
+                    "sort": 1
+                    },
+                    {
+                        "informContext": "",
+                        "informId": "20",
+                        "informReply": "0",
+                        "sort": 2
+                    },
+                    {
+                        "informContext": "",
+                        "informId": "21",
+                        "informReply": "0",
+                        "sort": 3
+                    },
+                    {
+                        "informContext": "",
+                        "informId": "22",
+                        "informReply": "0",
+                        "sort": 4
+                    },
+                    {
+                        "informContext": "",
+                        "informId": "23",
+                        "informReply": "0",
+                        "sort": 5
+                    },
+                    {
+                        "informContext": "",
+                        "informId": "24",
+                        "informReply": "0",
+                        "sort": 6
+                    },
+                    {
+                        "informContext": "",
+                        "informId": "25",
+                        "informReply": "0",
+                        "sort": 7
+                    },
+                    {
+                        "informContext": "",
+                        "informId": "26",
+                        "informReply": "0",
+                        "sort": 8
+                    }
+                ],
+                "insuCity": state.insurantAddressValue[1],
+                "insuProvince": state.insurantAddressValue[0],
+                "insuUrbanArea": state.insurantAddressValue[2],
+                "socialInsuFlag": "0",//医疗保险
+                "isSatutoryBeneficiary": "0",//是否是法定受益人
+                "jobCategory": state.jobCategory[0],
+                "mail": state.insurantEmail,
+                "nation": "CHN",
+                "province": state.insurantAddressValue[0],
+                "relaToInsured": state.forInsuredPerson[0],
                 "risks": [{
-                    "amnt": 300000,
+                    "amnt": state.amnt,
                     "insuYear": "1000",
                     "compensationRatio": "100",
                     "annualPayLimit": "100",
                     "lifePayLimit": "300 ",
-                    "drawAge": "65 ",
+                    "drawAge": "65",
                     "insuYearFlag": "Y",
                     "mult": 1,
                     "prem": state.fee,
                     "riskCode": "16050"
                 }],
-                "imparts": [{
-                    "informContext": "",
-                    "informId": "19",
-                    "informReply": "0",
-                    "sort": 1
-                },
-                {
-                    "informContext": "",
-                    "informId": "20",
-                    "informReply": "0",
-                    "sort": 2
-                },
-                {
-                    "informContext": "",
-                    "informId": "21",
-                    "informReply": "0",
-                    "sort": 3
-                },
-                {
-                    "informContext": "",
-                    "informId": "22",
-                    "informReply": "0",
-                    "sort": 4
-                },
-                {
-                    "informContext": "",
-                    "informId": "23",
-                    "informReply": "0",
-                    "sort": 5
-                },
-                {
-                    "informContext": "",
-                    "informId": "24",
-                    "informReply": "0",
-                    "sort": 6
-                },
-                {
-                    "informContext": "",
-                    "informId": "25",
-                    "informReply": "0",
-                    "sort": 7
-                },
-                {
-                    "informContext": "",
-                    "informId": "26",
-                    "informReply": "0",
-                    "sort": 8
-                }
-                ]
-
-
-
-            }]
-
+                "urbanArea": state.insurantAddressValue[2],
+                "zipCode": state.insurantZipCode
+            }],
+            "orderNo": "",
+            "payIntv": "12",
+            "payPeriod": "10",
+            "payPeriodFlag": "Y",
+            "proposeDate": "2017-08-25",
+            "saleItemId": "300516050",
+            "salesChannel": "3005",
+            "sumFirstPrem": state.fee,
+            "valDate": "2017-09-20" 
         }
     }
     zAJAX(`${ctx}/app/hengqin/insert_order`, { data: JSON.stringify(datas), workNum: state.workNum }, cb)
+}
+export const getMesCode = (state, cb) => {
+    let data={
+        "orderId":state.orderId,
+        "bizContent": {
+            "bankAccType": "01",
+            "bankCode": state.bankCode[0],
+            "bankNo": state.bankNum,
+            "certNo": "",
+            "certType": "",
+            "mobile":state.payPhone,
+            "orderNo": "",
+            "proposalNo": "",
+            "salesChannel": "",
+            "userName": ""
+        }
+    } 
+    zAJAX(`${ctx}/app/hengqin/signPay`, { data: JSON.stringify(data), workNum: state.workNum }, cb)
 }
 
 //支付
@@ -260,7 +275,7 @@ export const payOrder = (state, cb) => {
         }
 
     }
-    zAJAX(`${ctx}/app/hengqin/pay`, data, cb)
+    zAJAX(`${ctx}/app/hengqin/pay`, { data: JSON.stringify(data), workNum: state.workNum }, cb)
 
 }
 

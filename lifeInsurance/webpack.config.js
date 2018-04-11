@@ -10,8 +10,8 @@ module.exports = {
     // 众安驾乘意外险
     entry: "./src/index",
     output: {
-        path: "/Workspaces2018/mstps/WebRoot/static/js/mobile/anbang/anxinli",
-        publicPath: '../../static/js/mobile/anbang/anxinli/',
+        path: "/Workspaces2018/mstps/WebRoot/static/js/mobile/hengqin",
+        publicPath: '../static/js/mobile/hengqin/',
         chunkFilename: 'chunk.[name].[chunkhash:5].js',
         filename: "bundle.js"
     },

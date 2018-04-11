@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { changeInsurantName, changeInsurantNo, getPersonInfo,showSelector,changeAttentionA,changeAttentionB, changeInsurantGender, changeInsurantBirthday, changeInsurantPhone, changeInsurantEmail,changeJobCategoryLabel,changeOccupationShow , changeJobCategory} from '../actions'
+import { changeInsurantName,changeInsurantZipCode,changeInsurantAddress,changeInsurantLocation,changeInsurantEmail,changeInsurantNo,changeInvalidDate, getPersonInfo,showSelector,changeAttentionA,changeAttentionB, changeInsurantGender, changeInsurantBirthday, changeInsurantPhone,changeJobCategoryLabel,changeOccupationShow , changeJobCategory} from '../actions'
 import Insurant from '../components/Insurant'
 import data from '../reducers/data.json'
 
@@ -12,6 +12,12 @@ const mapStateToProps = (state) => ({
   insurantGender: state.insurantGender,
   insurantBirthday: state.insurantBirthday,
   insurantPhone: state.insurantPhone,
+  insurantEmail:state.insurantEmail,
+  longEffective: state.insurantEffective,
+  insurantZipCode: state.insurantZipCode,
+  insurantAddressValue:state.insurantAddressValue,
+  insurantLocation:state.insurantLocation,
+  certInvalidDate:state.certInvalidDate,
   jobCategory:state.jobCategory,
   jobCategoryList:data.jobCategoryList,
   category1_cname: state.occupation.category1_cname,
@@ -27,7 +33,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(getPersonInfo());
     dispatch(changeInsurantName(val));
   },
-
   showInsurantCertiTypeBox: (index) => {
     dispatch(showSelector(data.HolderCertiType, index, 'InsurantCertiType'))
   },
@@ -47,7 +52,25 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeInsurantPhone: (val) => {
     dispatch(changeInsurantPhone(val))
   },
-  
+   //修改被保人身份证有效期
+  onChangeInvalidDate:(val)=>{
+    dispatch(changeInvalidDate(val))
+  },
+  //邮编
+  onChangeInsurantZipCode:(val)=>{
+    dispatch(changeInsurantZipCode(val))
+  },
+  onChangeInsurantEmail:(val)=>{
+    dispatch(changeInsurantEmail(val))
+  },
+  onChangeInsurantAddress:(val)=>{
+    dispatch(changeInsurantAddress(val))
+    
+  },
+  onChangeInsurantLocation:(val)=>{
+    dispatch(changeInsurantLocation(val))
+    
+  },
   changeJobCategory:(val)=>{
     
     data.jobCategoryList.map((item,index)=>{

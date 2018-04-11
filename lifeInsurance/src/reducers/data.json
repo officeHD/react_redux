@@ -5,11 +5,71 @@
   "HolderGenderValue" : ["M", "F"],
   "ApplyNum" : [1, 2, 3],
   "productList":[
-    {"varietyCode":"34010","name":"横琴宜家年金保险（万能型）保险"},
-    {"varietyCode":"16020","name":"横琴金禧年年年金保险"},
-    {"varietyCode":"12030","name":"横琴优爱宝定期寿险"},
-    {"varietyCode":"11010","name":"横琴优爱宝终身寿险"},
-    {"varietyCode":"16050","name":"横琴优康保终身重大疾病保险"}
+    {"varietyCode":"34010","minAmnt":1, 
+      "name":{
+        "title":"横琴宜家年金保险（万能型）保险",
+        "imgp":"连续领取，月领越多",
+        "imgs":"高额祝寿金，安享晚年"
+      },
+      "payMentArry":[ { "value": "趸交", "label": "趸交" } ]
+    },
+    {"varietyCode":"16020", "minAmnt":1000, 
+      "name":{
+        "title":"横琴金禧年年年金保险",
+        "imgp":"连续领取，月领越多",
+        "imgs":"高额祝寿金，安享晚年"
+      },
+      "payMentArry":[
+        { "value": "趸交", "label": "趸交" }, 
+        { "value": 3, "label": "3年" },
+        { "value": 5, "label": "5年" },
+        { "value": 10, "label": "10年" } 
+      ]
+    },
+    {"varietyCode":"12030",  "minAmnt":300000, 
+      "name":{
+        "title":"横琴优爱宝定期寿险",
+        "imgp":"后顾无忧，小投入，高杠杆",
+        "imgs":"90天等待期"
+      },
+      "payMentArry":[
+        { "value": "趸交", "label": "趸交" }, 
+        { "value": 3, "label": "3年" },
+        { "value": 5, "label": "5年" },
+        { "value": 10, "label": "10年" },
+        { "value": 20, "label": "20年" } 
+      ]
+    },
+    {"varietyCode":"11010","minAmnt":50000, 
+      "name":{
+        "title":"横琴优爱宝终身寿险",
+        "imgp":"良心打造旗舰产品",
+        "imgs":"性价比爆表"
+      },
+      "payMentArry":[
+        { "value": "趸交", "label": "趸交" }, 
+        { "value": 10, "label": "10年" },
+        { "value": 20, "label": "20年" },
+        { "value": 30, "label": "30年" },
+        { "value": 100, "label": "交至100岁" }
+      ]
+    },
+    {"varietyCode":"16050", "minAmnt":50000, 
+      "name":{
+        "title":"横琴优康保终身重大疾病保险",
+        "imgp":"保终身，保百病",
+        "imgs":"多重赔，双豁免"
+      },
+      "payMentArry":[
+        { "value": "趸交", "label": "趸交" }, 
+        { "value": 3, "label": "3年" },
+        { "value": 5, "label": "5年" },
+        { "value": 10, "label": "10年" },
+        { "value": 15, "label": "15年" },
+        { "value": 20, "label": "20年" },
+        { "value": 30, "label": "30年" }
+      ]
+    }
   ],
   "forInsuredPerson": [
     {"value": "00","label": "本人"}, 
