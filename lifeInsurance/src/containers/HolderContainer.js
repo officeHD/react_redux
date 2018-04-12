@@ -63,6 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
     //修改出生日期
     onChangeHolderBirthday:(val)=>{
         dispatch(changeHolderBirthday(val))
+        
 
     },
     

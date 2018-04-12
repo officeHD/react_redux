@@ -47,7 +47,7 @@ export default class OutPut extends Component {
             minDate={moment().subtract(65, "years")}
             maxDate={moment().subtract(18, "years")}
             onOk={date => this.props.onChangeHolderBirthday(moment(date).format('YYYY-MM-DD'))}
-            disabled={this.props.holderCertiType?false:true}
+            // disabled={this.props.holderCertiType?false:true}
           >  
             <BlankLi item="出生日期"> </BlankLi>
           </DatePicker>

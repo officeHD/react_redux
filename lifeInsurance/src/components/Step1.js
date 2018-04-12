@@ -1,12 +1,12 @@
 import React from 'react'
 import TitleBarStepContainer from '../containers/TitleBarStepContainer'
 import HolderContainer from '../containers/HolderContainer'
-
 import InsurantContainer from '../containers/InsurantContainer'
 import SelectorContainer from '../containers/SelectorContainer'
 import OccupationContainer from '../containers/OccupationContainer'
 import LoadingContainer from '../containers/LoadingContainer'
- 
+import ServiceContainer from '../containers/ServiceContainer'
+
 
 import { Link } from 'react-router'
 import style from './asset/css/index.less'
@@ -17,8 +17,6 @@ const Step1 = ({step,fee, onGoToStep}) => (
     <TitleBarStepContainer />
    
     <HolderContainer justRead={false}/>
-    
-   
     <InsurantContainer/>
     <Footer/>
     <ul className={style.bottom_btns } >
@@ -28,6 +26,7 @@ const Step1 = ({step,fee, onGoToStep}) => (
     <SelectorContainer />
     <OccupationContainer />
     <LoadingContainer />
+   
   </div>
 )
 

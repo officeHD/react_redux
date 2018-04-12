@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
   
     imageuploaded: (event, type) => {
         dispatch(upLoadImg(event, type))
+        
     }
 })
 

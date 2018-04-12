@@ -22,7 +22,8 @@ const Out = ({title,varietyCode,fee,amnt,insurantGender,insurantBirthday,buyNum,
             </div>
           </div>
           <Plans title="投保年龄">
-            28天-55周岁
+           
+            {title.tbAge}
           </Plans>
           <DatePicker
             mode="date"

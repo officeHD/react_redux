@@ -1,13 +1,8 @@
 import React from 'react'
-import TitleBarStepContainer from '../containers/TitleBarStepContainer'
-import InsurantContainer from '../containers/InsurantContainer'
-import HolderContainer from '../containers/HolderContainer'
-import RelationTypeContainer from '../containers/RelationTypeContainer'
+import TitleBarStepContainer from '../containers/TitleBarStepContainer'   
 import OrderContainer from '../containers/OrderContainer'
 import LoadingContainer from '../containers/LoadingContainer'
 import PayOrderContainer from '../containers/PayOrderContainer'
-import PayOrder from './PayOrder'
- 
 import style from './asset/css/index.less'
 
 const OutPut = ({step,holderName, onGoToStep}) => (

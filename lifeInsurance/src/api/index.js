@@ -5,19 +5,30 @@ import { Toast } from 'antd-mobile';
 
 // 获取价值保费
 export const getRate = (state, cb) => {
+    let insurantAge=state.insurantAge; 
+    let insurantGender=state.insurantGender; 
+    let insurantAddressValue=state.insurantAddressValue; 
+    if(state.forInsuredPerson[0].toString() === "00"){
+       
+        insurantGender=state.holderGender
+        insurantAddressValue=state.holderAddressValue
+    }
     let data = {
-        sex: state.insurantGender,
-        age: state.insurantAge,
-        payendyear: state.payMent[0] || 20,
-        tbage: state.holderAge || 20,
-        varietyCode: state.varietyCode || 16050,
+        sex:insurantGender,
+        age: insurantAge,
+        payendyear: state.payMent[0],
+        tbage: state.holderAge ,
+        varietyCode: state.varietyCode,
         amnt:state.amnt,
-        province:state.insurantAddressValue[0],
-        city:state.insurantAddressValue[1]
+        province:insurantAddressValue[0],
+        city:insurantAddressValue[1]
     }
     zAJAX(`${ctx}/app/hengqin/get_rate`, data, cb)
 }
-
+//获取用户信息
+export const getStaff = (workNum, cb) => {
+    zAJAX(`${ctx}/lifeInsuranceApi/get_staff`, { workNum: workNum }, cb)
+}
 
 //获取用户信息
 export const getPersonInfo = (workNum, key, cb) => {
@@ -35,7 +46,7 @@ export const getJobList = (cb) => {
 //投保
 export const sendData = (state, cb) => {
     //被保人是投保人本人
-    let self = state.forInsuredPerson[0] === "00"
+   
     let fontImg = state.fontimg;
     let backImg = state.backimg;
     if (fontImg.indexOf("base64") < 0 || backImg.indexOf("base64") < 0) {
@@ -47,7 +58,7 @@ export const sendData = (state, cb) => {
         "bizContent": {
             "agentCode": "",
             "appnt": {
-                "address": state.holderAddressLabel.join("") + state.holderLocation,
+                "address":  state.holderLocation,
                 "birthday": state.holderBirthday,
                 "cellphone": state.holderPhone,
                 "certInvalidDate": state.certiNoEffictive,
@@ -123,7 +134,7 @@ export const sendData = (state, cb) => {
             "count": 1,
             "extendBody": "",
             "insureds": [{
-                "address": state.insurantAddressLabel.join("") + state.insurantLocation,
+                "address": state.insurantLocation,
                 "birthday": state.insurantBirthday,
                 "bnfs": [{
                     "birthday": "1980-01-01",
@@ -246,7 +257,7 @@ export const getMesCode = (state, cb) => {
             "orderNo": "",
             "proposalNo": "",
             "salesChannel": "",
-            "userName": ""
+            "userName": state.holderName
         }
     } 
     zAJAX(`${ctx}/app/hengqin/signPay`, { data: JSON.stringify(data), workNum: state.workNum }, cb)
@@ -257,9 +268,9 @@ export const payOrder = (state, cb) => {
     let data = {
         "orderId": state.orderId,
         "bizContent": {
-            "bankCode": "",
+            "bankCode": state.bankCode[0],
             "bankName": "",
-            "bankNo": "",
+            "bankNo": state.bankNum,
             "callBackUrl": "",
             "certNo": "",
             "certType": "",
@@ -270,7 +281,7 @@ export const payOrder = (state, cb) => {
             "salesChannel": "",
             "tranAmt": "",
             "transId": "",
-            "userName": "",
+            "userName": state.holderName,
             "smsCode": state.smsCode
         }
 
@@ -279,11 +290,7 @@ export const payOrder = (state, cb) => {
 
 }
 
-//前往最后的页面
-export const goToPayNormal = (state) => {
-    window.location.href = './pay_card?insuredId=' + state.insuredId + '&sumPremium=' + 100 * state.applyNum + '&policyNo=' + state.policyNo + '&applyNum=' + state.applyNum + '&staffId=' + state.staffId
-
-}
+ 
 
 export const checkAge = (str, val) => {
     var tip = "";
@@ -487,5 +494,5 @@ export const getDataFromUrl = (name) => {
 
 //如果是编辑页面，初始化编辑数据
 export const getEditDate = (state, id, cb) => {
-    zAJAX(`${ctx}/appZhongan/personal/detail`, { id: id }, cb)
+    zAJAX(`${ctx}/app/hengqin/detail`, { id: id }, cb)
 }

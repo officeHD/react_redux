@@ -206,16 +206,26 @@ body {
     }
 }
 .article {
-    padding: 30px;
-     
-     padding-bottom: 150px;
+    padding-bottom: 150px;
+   .artitle{
+        margin-top: 1.5rem;
+        list-style-type: none;
+        counter-reset: sectioncounter;
+        li{
+            font-size: 28px;
+            color: #666;
+            line-height: 50px;
+            margin: .85rem 2.1rem;
+            counter-increment: sectioncounter;
+        }
+    }
+    
     p {
         margin-right: 0px;
         margin-left: 0px;
-        text-indent: 29px;
-
-        margin-top: 20px;
-        line-height: 1.75em;
+        text-indent: 1em;
+        // padding-left:1em;
+        line-height: 1.7em;
         &.article_title {
             text-align: center;
         }

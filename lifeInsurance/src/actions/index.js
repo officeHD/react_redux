@@ -2,7 +2,8 @@ import * as api from '../api'
 import { uploadCardImg } from '../api/uploadImg'
 import data from '../reducers/data.json'
 import { Toast } from 'antd-mobile';
-
+ 
+export const RESET = 'RESET'
 export const SET_TITLE_NAME = 'SET_TITLE_NAME'
 export const SET_PAY_MENT = 'SET_PAY_MENT'
 export const SET_INIT_AMNT = 'SET_INIT_AMNT'
@@ -34,7 +35,6 @@ export const CHANGE_INSURANT_ZIPCODE = 'CHANGE_INSURANT_ZIPCODE'
 
 
 export const CHANGE_FOR_INSURED = 'CHANGE_FOR_INSURED'
-export const CHANGE_APPLY_NUM = 'CHANGE_APPLY_NUM'
 export const SHOW_SELECTOR = 'SHOW_SELECTOR'
 export const CLOSE_SELECTOR = 'CLOSE_SELECTOR'
 export const CHANGE_CONTACT_CERTI_TYPE = 'CHANGE_CONTACT_CERTI_TYPE'
@@ -46,9 +46,8 @@ export const CHANGE_IDS = 'CHANGE_IDS'
 export const CHANGE_IS_LOADING = 'CHANGE_IS_LOADING'
 export const CHANGE_STAFF_ID = 'CHANGE_STAFF_ID'
 export const CHANGE_WORK_NUM = 'CHANGE_WORK_NUM'
-export const INIT_PROVINCE_DATA = 'INIT_PROVINCE_DATA'
-export const INIT_CITY_DATA = 'INIT_CITY_DATA'
-export const INIT_COUNTY_DATA = 'INIT_COUNTY_DATA'
+  
+ 
 export const SHOW_LI_SELECTOR = 'SHOW_LI_SELECTOR'
 export const CLOSE_LI_SELECTOR = 'CLOSE_LI_SELECTOR'
 export const CHANGE_PROVINCE = 'CHANGE_PROVINCE'
@@ -78,7 +77,8 @@ export const CLICK_JOBS = 'CLICK_JOBS'
 export const CHANGE_EFFICTIVE = 'CHANGE_EFFICTIVE'
 export const CHANGE_INVALI_DATE = 'CHANGE_INVALI_DATE'
 
-export const CHANGE_CARD_IMG = 'CHANGE_CARD_IMG'
+export const CHANGE_CARD_IMGFONT = 'CHANGE_CARD_IMGFONT'
+export const CHANGE_CARD_IMGBACK = 'CHANGE_CARD_IMGBACK'
 export const CHANGE_ATTENA = 'CHANGE_ATTENA'
 export const CHANGE_ATTENB = 'CHANGE_ATTENB'
 export const CHANFE_FEE = 'CHANFE_FEE'
@@ -91,11 +91,19 @@ export const CHANGE_BANKNUM = 'CHANGE_BANKNUM'
 export const CHANGE_BANK_CODE = 'CHANGE_BANK_CODE'
 export const CHANGE_TAB = 'CHANGE_TAB'
 export const INIT_ORDERID = 'INIT_ORDERID'
+export const INIT_STAFF = 'INIT_STAFF'
+
+
 export const CHECK_HEALTHY = 'CHECK_HEALTHY'
- 
+export const CHANGE_SERVICE = 'CHANGE_SERVICE'
 
 
 
+//改变保费
+export const reset = (val) => ({
+    type: RESET,
+   
+})
 
 //改变保费
 export const setVarietyCode = (val) => ({
@@ -125,6 +133,11 @@ export const changePayMent = (val) => ({
 export const changeSecond = (val) => ({
     type: CHANGE_SECOND,
     val,
+})
+
+export const changeService = () => ({
+    type: CHANGE_SERVICE,
+   
 })
 
 // 清除ID
@@ -212,7 +225,6 @@ export const setVarietyOption = (val) => (dispatch, getState) => {
 export const changeHolderNo = (val) => (dispatch, getState) => {
     dispatch(onchangeHolderNo(val))
     let state = getState();
-
     if (val.length === 18 && state.holderCertiTypeVal.toString() ==="0") {
         if (api.IdentityCodeValid(val)) {
             let year = val.substr(6, 4)
@@ -220,22 +232,28 @@ export const changeHolderNo = (val) => (dispatch, getState) => {
             let day = val.substr(12, 2)
             let sex = val.substr(16, 1) - 0;
             let birthday = year + '-' + month + '-' + day;
-            let age = api.getAge(birthday);
-            dispatch(changeHolderAge(age))
            
-            dispatch(changeHolderBirthday(year + '-' + month + '-' + day))
+            dispatch(changeHolderBirthday(birthday))
             dispatch(changeHolderGender((sex + 1) % 2))
-           
+            
         }
     }
+   
 }
-//修改投保人出生日期
+export const changeHolderBirthday=(val)=>(dispatch, getState)=>{
+    let age = api.getAge(val);
+    dispatch(changeHolderAge(age))
+    dispatch(onchangeHolderBirthday(val))
+    console.log(age);
+    dispatch(getRate())
+}
+//修改投保人年龄
 export const changeHolderAge = (val) => ({
     type: CHANGE_HOLDER_AGE,
     val,
 })
 //修改投保人出生日期
-export const changeHolderBirthday = (val) => ({
+export const onchangeHolderBirthday = (val) => ({
     type: CHANGE_HOLDER_BIRTHDAY,
     val,
 })
@@ -273,9 +291,11 @@ export const changeHolderEmail = (val) => ({
 //修改投保人地址
 export const changeHolderAddress = (val) => (dispatch, getState) => {
     let name = dispatch(getAddressLabel(val))
-    console.log(name);
     dispatch(changeHolderAddressValue(val));
     dispatch(changeHolderAddressLabel(name));
+    dispatch(getRate());
+
+
 }
 
 export const changeHolderAddressValue = (val) => ({
@@ -307,6 +327,7 @@ export const changeInsurantEmail = (val) => ({
 //显示职业类别选择器
 export const changeJobCategory = (val) => (dispatch, getState) => {
     dispatch(changeJobCategoryVal(val));
+    console.log(val);
     if (val[0] === '') {
         if (!sessionStorage.jobList) {
             let cb = msg => {
@@ -321,16 +342,27 @@ export const upLoadImg = (event, type) => (dispatch, getState) => {
     dispatch(changeIsLoading())
     let cb = (imgdata) => {
         dispatch(changeIsLoading())
-        dispatch(changeCardImg(imgdata, type))
+        if(type==="font"){
+            dispatch(changeCardImgFont(imgdata))
+        }else{
+            dispatch(changeCardImgBack(imgdata, type))
+        }
+       
+       
     }
     uploadCardImg(event, cb);
 }
 
 
-export const changeCardImg = (val, typeWay) => ({
-    type: CHANGE_CARD_IMG,
-    val,
-    typeWay
+export const changeCardImgFont = (val) => ({
+    type: CHANGE_CARD_IMGFONT,
+    val
+  
+})
+export const changeCardImgBack = (val) => ({
+    type: CHANGE_CARD_IMGBACK,
+    val
+   
 })
 export const changeJobCategoryVal = (val) => ({
     type: CHANGE_JOB_CATEGORY,
@@ -402,9 +434,8 @@ export const onchangeInsurantNo = (val) => ({
 //输入被保人证件号
 export const changeInsurantNo = (val) => (dispatch, getState) => {
     let state = getState();
-
     dispatch(onchangeInsurantNo(val))
-    if (val.length === 18 && state.insurantCertiTypeVal === 0) {
+    if (val.length === 18 && state.insurantCertiTypeVal.toString() === '0') {
         if (api.IdentityCodeValid(val)) {
             let year = val.substr(6, 4)
             let month = val.substr(10, 2)
@@ -418,10 +449,12 @@ export const changeInsurantNo = (val) => (dispatch, getState) => {
 
 //修改被保人出生日期/年龄
 export const changeInsurantBirthday = (val) => (dispatch, getState) => {
+    
     let age = api.getAge(val);
     dispatch(changeInsurantAge(age))
     dispatch(onchangeInsurantBirthday(val))
     dispatch(getRate());
+
 }
 //修改被保人出生日期
 export const onchangeInsurantBirthday = (val) => ({
@@ -487,12 +520,7 @@ export const changeAttentionB = () => ({
 
 
 
-//修改购买份数
-export const changeApplyNum = (index) => ({
-    type: CHANGE_APPLY_NUM,
-    index,
-})
-
+ 
 
 
 
@@ -534,6 +562,11 @@ export const changeTab = (val) => ({
 export const initEditData = (entity) => ({
     type: INIT_EDIT_DATA,
     entity
+})
+//初始化编辑数据
+export const initStaff = (val) => ({
+    type: INIT_STAFF,
+    val
 })
 
 // 预留手机号
@@ -724,7 +757,21 @@ export const payOrder = (val) => (dispatch, getState) => {
     let state = getState();
     if (api.checkData("验证码", state.payPhone) && api.checkData("订单号", state.orderId)) {
         api.payOrder(state, msg => {
-            console.log(msg);
+            
+            if(msg.result.toString()==="1"){
+                // window.location = `${ctx}/hengqin/result?insuredId=${msg.orderId}`;
+                if(state.type){
+                    if(window.minsheng){
+                        window.minsheng.trunToLifeInsuranceActivity()
+                    }else{
+                        window.location.href = "sn://trunToLifeInsuranceActivity";
+                        
+                    }
+                }else{
+                    dispatch(reset())
+                    window.location.href="#/";
+                }
+            }
         })
     }
 }
@@ -740,35 +787,32 @@ export const initData = () => (dispatch, getState) => {
         dispatch(changeType())
     }
     let staffId = api.getDataFromUrl('staffId')
-    if (staffId) {
-        sessionStorage.staffId = staffId;
-        dispatch(changeStaffId(staffId))
-    } else if (sessionStorage.staffId) {
-        dispatch(changeStaffId(sessionStorage.staffId))
-    };
     let workNum = api.getDataFromUrl('workNum');
-    if (workNum) {
+    if (staffId&&workNum) {
+         
+        api.getStaff(workNum,msg=>{
+            if(msg.result.toString()==="1"){
+                dispatch(initStaff(msg.staff))
+            }
+        })
+        dispatch(changeStaffId(staffId))
         dispatch(changeworkNum(workNum))
-    }
+    }  
+  
     let varietyCode = sessionStorage.varietyCode;
     dispatch(setVarietyOption(varietyCode));
     let id = api.getDataFromUrl('id') || sessionStorage.personalCardOrderId;
-    let again = api.getDataFromUrl('again') || false;
+   
     //有订单ID说明是编辑页面,并标记为编辑状态，最后step1返回时返回到订单列表页
-    dispatch(getRate());
     if (id) {
         api.getEditDate(getState(), id, msg => {
-            if (msg.result === 1) {
-                dispatch(initEditData(msg.entity))
-                // 如果不是订单列表
+            let entity=JSON.parse(msg);
+            if(Object.keys(entity).length>0){
+                console.log(entity)
+                dispatch(initEditData(entity))
                 window.location = "#/step1"
-                if (again) {
-                    dispatch(clearId())
-                }
-            } else {
-                Toast.info(msg.message)
-            }
+            }  
         })
-
     }
+    dispatch(getRate());
 }

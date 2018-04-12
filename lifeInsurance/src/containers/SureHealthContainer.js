@@ -4,6 +4,7 @@ import SureHealth from '../components/SureHealth'
 
 const mapStateToProps = (state) => ({
     healthy: state.healthy,
+    content:state.titleName.healthy
   
 })
 
