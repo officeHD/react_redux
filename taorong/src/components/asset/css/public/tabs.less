@@ -1,0 +1,29 @@
+.tabs {
+    background-color: #fff;
+     max-width: 200%;
+     height: 80px;
+    .content{
+        height: 80px;
+        width: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        overflow-x: auto;
+        line-height: 80px;
+        border-bottom: 1PX solid #ccc;
+    }
+    .items {
+        min-width: 90px;
+       
+        padding: 0 15px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        text-align: center;
+        &.active{
+            border-bottom: 3PX solid #DA251E;
+        }
+    }
+}
